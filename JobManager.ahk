@@ -10,19 +10,10 @@ return
 
 
 
-LoadJob:
-
-return
 
 
-GuiClose:
-ExitApp
-return
-
-
-GuiSize:
-;Anchor("TheEdit", "hw"), Anchor("AButton", "yx")
-return
+#Include resources\Labels\GUI.ahk
+#Include resources\Labels\GUI_Menu.ahk
 
 
 
