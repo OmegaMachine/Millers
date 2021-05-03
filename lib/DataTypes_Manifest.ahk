@@ -1,0 +1,10 @@
+﻿#Include lib\DataTypes\Address.ahk
+#Include lib\DataTypes\Aggregate.ahk
+#Include lib\DataTypes\Country.ahk
+#Include lib\DataTypes\Employee.ahk
+#Include lib\DataTypes\Job.ahk
+#Include lib\DataTypes\Product.ahk
+#Include lib\DataTypes\Shift.ahk
+#Include lib\DataTypes\Street.ahk
+#Include lib\DataTypes\WeatherState.ahk
+#Include lib\DataTypes\Road.ahk
