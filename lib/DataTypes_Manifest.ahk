@@ -8,3 +8,4 @@
 #Include lib\DataTypes\Street.ahk
 #Include lib\DataTypes\WeatherState.ahk
 #Include lib\DataTypes\Road.ahk
+#Include lib\DataTypes\ProductTicket.ahk

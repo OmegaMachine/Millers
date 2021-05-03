@@ -1,6 +1,8 @@
 ﻿OnExit,GuiClose
 AppResolution:=new ScreenToAppResolution(80) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
-IconManager:=new IconManager(A_ScriptDir . "\resources\Test.dll") ;This container managers a resource only dll containing icons. the icons can be referenced by ID or resource name.
+IconManager:=new IconManager(A_ScriptDir . "\resources\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
+ListManager:=new DataManager(A_ScriptDir . "\resources\Data.MDAT") ;this container managesa MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
+;msgbox,% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"))
 Welcome_FLAG:=false
 WelcomeText:="Welcome to JobManager. Load a Project to Continue!"
 ;This Include organizes the main GUI's menu creation
@@ -18,7 +20,7 @@ return ; End of autoload section
 ;This Include organizes the main GUI's menu labels
 #Include resources\Labels\GUI_Menu.ahk
 ;This Include organizes functions related to the main gui
-#Include resources\Labels\GUI_Functions.ahk
+#Include resources\JobManager\GUI_Functions.ahk
 
 
 
@@ -32,9 +34,10 @@ return ; End of autoload section
 #Include lib\External\Anchor.ahk
 ;This Include handles retrieving the dll resources given name by index
 #Include lib\External\GetIconGroupNameByIndex.ahk
-
+;this include serializes/deserializes arrays or simple objects to a json string or back to an array/object
+#Include lib\External\JSON.ahk
 
 Home::
-RemoveWelcome()
+Remove_Welcome()
 return
 
