@@ -9,3 +9,5 @@
 #Include lib\DataTypes\WeatherState.ahk
 #Include lib\DataTypes\Road.ahk
 #Include lib\DataTypes\ProductTicket.ahk
+#Include lib\DataTypes\File.ahk
+#Include lib\DataTypes\SerializableClass.ahk
