@@ -8,6 +8,7 @@
 
     toJson(){
         SC:=this.Clone()
+        Out("Serializing object <" . SC.SerializableData.ClassType . ">",1)
         for index,item in this.SerializableData
         {
             ;msgbox,% index
@@ -29,6 +30,7 @@ return Json_fromobj(this.SerializableData)
 
 
     DeSerialize(_Object){
+        Out("Deserializing object <" . _Object.ClassType . ">",1)
 SC:=_Object.Clone()
         for index,item in _Object
         {
@@ -36,7 +38,7 @@ SC:=_Object.Clone()
             if(isObject(item)){
                 if(item.SerializableData.isSerializable){
                     PT:=Item.SerializableData.ClassType
-                    
+                   
                         _Object[index]:=new %PT%(Item.SerializableData)
                        ; SC[index]:=Item.Deserialize(Item)
                 }else{
@@ -44,6 +46,7 @@ SC:=_Object.Clone()
         {
             if(Item2.SerializableData.isSerializable){
                          PT:=Item2.SerializableData.ClassType
+                         
                         _Object[index][index2]:=new %PT%(Item2.SerializableData)
  
                 }

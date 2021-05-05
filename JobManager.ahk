@@ -1,5 +1,5 @@
 ﻿OnExit,GuiClose
-
+Out("Initializing")
 AppResolution:=new ScreenToAppResolution(80) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
 IconManager:=new IconManager(A_ScriptDir . "\resources\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
 ListManager:=new DataManager(A_ScriptDir . "\resources\Data.MDAT") ;this container managesa MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
@@ -49,3 +49,12 @@ return
 
 
 
+Out(_T,_Layer:=0){
+
+loop,%_Layer%
+{
+_Layers:=_Layers . A_Tab
+}
+_Str:=_Layers . ">" . _T
+    OutputDebug,%_Str%
+}

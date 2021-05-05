@@ -20,13 +20,16 @@ if(isObject(_Load)){
 		this.SerializableData.Roads:=_Roads
 }
 
-
-
-
-
-
 }
 	return this
 }
-
+SaveChanges(_JobFile){
+	Out("Saving Job <" . _JobFile.FullPath . ">")
+	Out("Deleting Old Copy")
+FileDelete,% _JobFile.FullPath
+Out("Appending New Data")
+FileAppend,% this.toJson(),% _JobFile.FullPath
+Out("Save Job Complete")
+return 1
+}
 }
