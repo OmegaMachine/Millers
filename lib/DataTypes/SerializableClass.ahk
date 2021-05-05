@@ -58,6 +58,7 @@ return _Object
     }
 
 Flush(_ID:=0,_C:=0){
+    
 if(!isObject(_ID)){
     MyItem:=this
     Out("Flushing Class <" . MyItem.__Class . ">",_C)

@@ -66,3 +66,14 @@ FileAppend,% NewJob.toJson(),%_Dir%\%_Name%
 ;msgbox,% NewJob.toJson()
 return 1
 }
+
+
+CheckDirectory(_Dir){
+ifNotExist,%_Dir%
+{
+    Out("Creating Directory <" . _Dir . ">")
+    FileCreateDir, %_Dir%
+    return 1
+}
+return 0
+}

@@ -15,7 +15,7 @@ if(isObject(_Load)){
 	this.SerializableData.JobOwner:=_JobOwner
 	
 	if(!isObject(_Roads)){
-		this.SerializableData.Roads:=[new Road(0,"Hello")]
+		this.SerializableData.Roads:=[]
 	}else{
 		this.SerializableData.Roads:=_Roads
 }
