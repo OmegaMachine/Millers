@@ -19,10 +19,6 @@ UnsavedChanges:=False
 #Include lib\JobManager\GUI\Gui.ahk
 
 return ; End of autoload section
-home::
-UnsavedChanges()
-return
-
 
 
 ;This Include organizes the main GUI's labels (Close,Size etc.)
