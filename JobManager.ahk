@@ -14,9 +14,9 @@ ActiveJobFile:=0
 ActiveJob:=0
 UnsavedChanges:=False
 ;This Include organizes the main GUI's menu creation
-#Include lib\JobManager\Gui_Menu.ahk 
+#Include lib\JobManager\GUI\Gui_Menu.ahk 
 ;This Include organizes the main GUI's creation
-#Include lib\JobManager\Gui.ahk
+#Include lib\JobManager\GUI\Gui.ahk
 
 return ; End of autoload section
 home::
@@ -29,9 +29,10 @@ return
 #Include lib\Labels\GUI.ahk
 ;This Include organizes the main GUI's menu labels
 #Include lib\Labels\GUI_Menu.ahk
-;This Include organizes functions related to the main gui
+;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk
-
+;This include adds debug functions
+#include lib\JobManager\Debug.ahk
 
 
 
@@ -49,12 +50,3 @@ return
 
 
 
-Out(_T,_Layer:=0){
-
-loop,%_Layer%
-{
-_Layers:=_Layers . A_Tab
-}
-_Str:=_Layers . ">" . _T
-    OutputDebug,%_Str%
-}
