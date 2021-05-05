@@ -57,4 +57,31 @@ SC:=_Object.Clone()
 return _Object     
     }
 
+Flush(_ID:=0,_C:=0){
+if(!isObject(_ID)){
+    MyItem:=this
+    Out("Flushing Class <" . MyItem.__Class . ">",_C)
+    _C++
+}else{
+    MyItem:=_ID
+    _C++
+    if(MyItem.SerializableData.ClassType){
+Out("Flushing Class <" . MyItem.SerializableData.ClassType . ">",_C)
+    }else{
+Out("Flushing <" . "Object/Array" . ">",_C)
+    }
+}
+    for index, item in MyItem
+    {
+        if(!isObject(Item)){
+        Out("[" . index . "] = [" . Item . "]",_C)
+    }else{
+        this.Flush(Item,_C)
+        ;Out("<" . index . "> = [" . "Object" . "]")
+    }
+}
+return _C
+} 
+
+
 }

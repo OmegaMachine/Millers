@@ -3,8 +3,8 @@ Out("Initializing")
 AppResolution:=new ScreenToAppResolution(80) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
 IconManager:=new IconManager(A_ScriptDir . "\lib\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
 ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container managesa MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
-Serializer:=new Serializer()
-Menu, Tray, Icon,% IconManager.DLLPath,% IconManager.IconIDByName("HWC")
+Serializer:=new Serializer() ;This manager can serialize json strings to objects/arrays and vice versa
+Menu, Tray, Icon,% IconManager.DLLPath,% IconManager.IconIDByName("HWC") ;Sets Tray Icon
 ;msgbox,% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"))
 MAIN_WINDOW:=0 ;this gets set to the main guis hwnd when it exists
 APP_NAME:="JobManager"
@@ -19,7 +19,9 @@ UnsavedChanges:=False
 #Include lib\JobManager\GUI\Gui.ahk
 
 return ; End of autoload section
-
+Home::
+ActiveJob.Flush()
+return
 
 ;This Include organizes the main GUI's labels (Close,Size etc.)
 #Include lib\Labels\GUI.ahk
