@@ -66,7 +66,7 @@ if(ActiveJob){
 Out("Saving Job")
 ActiveJob.SaveChanges(ActiveJobFile)
 }else{
-    Out("No Active Job")
+    Out("Save - No Active Job")
 }
 return
 
@@ -75,6 +75,6 @@ if(ActiveJob){
 Out("Flushing Active Job")
 ActiveJob.Flush()
 }else{
-    Out("No Active Job")
+    Out("Flush - No Active Job")
 }
 return
