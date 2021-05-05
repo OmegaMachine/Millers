@@ -36,9 +36,9 @@ return
 
 
 ;This Include organizes the programs classes (datatypes)
-#Include lib\DataTypes_Manifest.ahk
+#Include lib\DataTypes\Manifest.ahk
 ;This Include organizes the programs containers (AppResoultion,IconManager etc.)
-#Include lib\Manager_Manifest.ahk
+#Include lib\Managers\Manifest.ahk
 
 ;This Include handles anchoring controls
 #Include lib\External\Anchor.ahk
