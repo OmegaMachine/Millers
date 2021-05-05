@@ -45,6 +45,7 @@ return
 #Include lib\External\GetIconGroupNameByIndex.ahk
 ;this include serializes/deserializes arrays or simple objects to a json string or back to an array/object
 #Include lib\External\JSON.ahk
-
+;this external allows AES encryption of strings
+#Include lib\External\AES.ahk
 
 
