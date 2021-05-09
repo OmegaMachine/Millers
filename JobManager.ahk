@@ -23,7 +23,8 @@ INTERNAL_LOADING:=true
 
 return ; End of autoload section
 Home::
-ActiveJob.Flush()
+
+
 return
 
 ;This Include organizes the main GUI's labels (Close,Size etc.)

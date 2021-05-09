@@ -7,6 +7,7 @@
 #Include lib\DataTypes\Shift.ahk
 #Include lib\DataTypes\Street.ahk
 #Include lib\DataTypes\WeatherState.ahk
+#Include lib\DataTypes\TimeState.ahk
 #Include lib\DataTypes\Road.ahk
 #Include lib\DataTypes\ProductTicket.ahk
 #Include lib\DataTypes\File.ahk

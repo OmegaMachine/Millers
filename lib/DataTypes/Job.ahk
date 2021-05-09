@@ -4,7 +4,7 @@
 
 
 class Job extends SerializableClass{
-__New(_Load:=0,_JobNumber:="",_JobOwner:="",_Roads:="",_Weather:="",_Times:=""){ ;_Roads:An array of roads
+__New(_Load:=0,_JobNumber:="",_JobOwner:="",_Roads:="",_Weather:="",_Times:="",_ActiveEmployees:="",_ActiveEquipment:=""){ ;_Roads:An array of roads
 	;We must initiate the base class manually
 base.__New()
 if(isObject(_Load)){
@@ -35,6 +35,18 @@ if(isObject(_Load)){
 		this.SerializableData.Times.StartTime:=new TimeState(0,6,30) ;6:30am
 	}else{
 		this.SerializableData.Times:=_Times
+}
+
+	if(!isObject(_ActiveEmployees)){
+		this.SerializableData.Employees:=[]
+	}else{
+		this.SerializableData.Employees:=_ActiveEmployees
+}
+
+	if(!isObject(_ActiveEquipment)){
+		this.SerializableData.Equipment:=[]
+	}else{
+		this.SerializableData.Equipment:=_ActiveEquipment
 }
 
 }
