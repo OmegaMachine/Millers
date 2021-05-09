@@ -31,7 +31,11 @@ return
 ActiveJobFile:=new File(_JobPath)
 ActiveJob:=new Job(Serializer.Deserialize(ActiveJobFile.Read()))
 ;ActiveJob:=Serializer.DeserializeClass(ActiveJobFile.Read())
+INTERNAL_LOADING:=true
+Out("ON")
 LoadJob(ActiveJobFile)
+INTERNAL_LOADING:=false
+Out("OFF")
 return
 
 
@@ -64,7 +68,9 @@ return
 FileMenu_SaveJob:
 if(ActiveJob){
 Out("Saving Job")
+Push_GUI()
 ActiveJob.SaveChanges(ActiveJobFile)
+UnsavedChanges(false)
 }else{
     Out("Save - No Active Job")
 }

@@ -50,13 +50,17 @@ global
 Out("Load Job Success. <" . _JobFile.FileNameNoExt . ">")
 Remove_Welcome()
 SetTitle(APP_NAME . " - " . _JobFile.FileNameNoExt)
+Push_ActiveJob(ActiveJob)
 return 1
 }
 
 
 UnsavedChanges(_State:=true){
-    global UnsavedChanges
+    global
+    if(!INTERNAL_LOADING){
+    Out("Changes Made")
     UnsavedChanges:=_State
+}
     return 1
 }
 
@@ -76,4 +80,20 @@ ifNotExist,%_Dir%
     return 1
 }
 return 0
+}
+
+
+
+Push_GUI(){
+    global
+    Out("Pushing Details to GUI")
+    Gui,1:Submit,NoHide
+    ActiveJob.SerializableData.JobNumber:=JobDetails_JobNumberEdit
+    return 1
+}
+Push_ActiveJob(_Job){
+    global
+    Out("Pushing GUI to Job")
+    GuiControl,,JobDetails_JobNumberEdit,% ActiveJob.SerializableData.JobNumber
+    return 1
 }

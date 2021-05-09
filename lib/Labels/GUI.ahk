@@ -1,12 +1,28 @@
 ﻿
 GuiClose:
-ExitApp
+if(UnsavedChanges){
+MsgBox, 4388, Unsaved Changes, There are unsaved changes to the current job file. would you like to discard them and close the active job?
+IfMsgBox, No
+{
+    Out("Close Job Failed. Unsaved Changes.",1)
+    return
+}
+}
+exitapp
 return
 
 
 GuiSize:
 ;Anchor("Main_TAB", "hw"), Anchor("AButton", "yx")
+
 Anchor("Welcome_Text", "hw")
 Anchor("Main_TAB", "hw")
+Anchor("GroupBox_JobDetails","w0.25h0.3")
+Anchor("JobDetails_JobNumberText","w0.125")
+Anchor("JobDetails_JobNumberEdit","w0.125x0.1")
 
+return
+
+GuiGeneralModify:
+   UnsavedChanges() 
 return

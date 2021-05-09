@@ -1,6 +1,8 @@
-﻿OnExit,GuiClose
-Out("Initializing")
-AppResolution:=new ScreenToAppResolution(80) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
+﻿
+VersionManager:=new VersionManager(0,0,0,0)
+Out("Initializing v" . VersionManager.Current())
+UpdateManager:=new GitUpdateManager(VersionManager.current(),_UpdateURL)
+AppResolution:=new ScreenToAppResolution(50) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
 IconManager:=new IconManager(A_ScriptDir . "\lib\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
 ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container managesa MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
 Serializer:=new Serializer() ;This manager can serialize json strings to objects/arrays and vice versa
@@ -13,6 +15,7 @@ WelcomeText:="Welcome to JobManager. Load a Project to Continue!"
 ActiveJobFile:=0
 ActiveJob:=0
 UnsavedChanges:=False
+INTERNAL_LOADING:=true
 ;This Include organizes the main GUI's menu creation
 #Include lib\JobManager\GUI\Gui_Menu.ahk 
 ;This Include organizes the main GUI's creation
