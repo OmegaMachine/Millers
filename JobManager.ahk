@@ -1,5 +1,5 @@
 ﻿
-VersionManager:=new VersionManager(0,0,0,0)
+VersionManager:=new VersionManager(1,1,0,1)
 Out("Initializing v" . VersionManager.Current())
 UpdateManager:=new GitUpdateManager(VersionManager.current(),_UpdateURL)
 AppResolution:=new ScreenToAppResolution(50) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.

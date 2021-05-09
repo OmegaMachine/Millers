@@ -1,4 +1,4 @@
-﻿class AggregateTicket extends SerializableClass{
+﻿class Aggregate extends SerializableClass{
 __New(_Load:=0,_Type:="",_Size:=""){
 		;We must initiate the base class manually
 base.__New()
