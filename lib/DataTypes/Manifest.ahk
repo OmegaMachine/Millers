@@ -1,15 +1,16 @@
 ﻿#Include lib\DataTypes\Address.ahk
 #Include lib\DataTypes\Aggregate.ahk
+#Include lib\DataTypes\AggregateTicket.ahk
 #Include lib\DataTypes\Country.ahk
 #Include lib\DataTypes\Employee.ahk
 #Include lib\DataTypes\Job.ahk
 #Include lib\DataTypes\Product.ahk
+#Include lib\DataTypes\ProductTicket.ahk
 #Include lib\DataTypes\Shift.ahk
 #Include lib\DataTypes\Street.ahk
 #Include lib\DataTypes\WeatherState.ahk
 #Include lib\DataTypes\TimeState.ahk
 #Include lib\DataTypes\Road.ahk
-#Include lib\DataTypes\ProductTicket.ahk
 #Include lib\DataTypes\Equipment.ahk
 #Include lib\DataTypes\File.ahk
 #Include lib\DataTypes\SerializableClass.ahk
