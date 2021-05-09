@@ -65,7 +65,7 @@ UnsavedChanges(_State:=true){
 }
 
 Create_BlankJobFile(_Dir,_Name){
-NewJob:=new Job(0,"144902","Mississippi Mills",0)
+NewJob:=new Job(0,"555555","Mississippi Mills",0)
 FileAppend,% NewJob.toJson(),%_Dir%\%_Name%
 ;msgbox,% NewJob.toJson()
 return 1
@@ -88,12 +88,12 @@ Push_GUI(){
     global
     Out("Pushing Details to GUI")
     Gui,1:Submit,NoHide
-    ActiveJob.SerializableData.JobNumber:=JobDetails_JobNumberEdit
+    ActiveJob.SerializableData.JobNumber:=JobDetails_JobNumberDDL
     return 1
 }
 Push_ActiveJob(_Job){
     global
     Out("Pushing GUI to Job")
-    GuiControl,,JobDetails_JobNumberEdit,% ActiveJob.SerializableData.JobNumber
+    GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
     return 1
 }

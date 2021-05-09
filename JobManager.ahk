@@ -25,6 +25,7 @@ return ; End of autoload section
 Home::
 
 
+Out(ListManager.ListToDelimited(ListManager.ListByName("Job_Numbers"),"555555"))
 return
 
 ;This Include organizes the main GUI's labels (Close,Size etc.)
