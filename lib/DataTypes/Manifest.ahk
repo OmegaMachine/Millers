@@ -10,5 +10,6 @@
 #Include lib\DataTypes\TimeState.ahk
 #Include lib\DataTypes\Road.ahk
 #Include lib\DataTypes\ProductTicket.ahk
+#Include lib\DataTypes\Equipment.ahk
 #Include lib\DataTypes\File.ahk
 #Include lib\DataTypes\SerializableClass.ahk
