@@ -82,3 +82,13 @@ ActiveJob.Flush()
     Out("Flush - No Active Job")
 }
 return
+
+ErrorCheck_ActiveJob:
+
+Return
+Conversion_ActiveJob_toDailyLog:
+
+return
+Conversion_ActiveJob_toPayroll:
+
+return

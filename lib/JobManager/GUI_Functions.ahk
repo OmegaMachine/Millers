@@ -89,11 +89,15 @@ Push_GUI(){
     Out("Pushing Details to GUI")
     Gui,1:Submit,NoHide
     ActiveJob.SerializableData.JobNumber:=JobDetails_JobNumberDDL
+    ActiveJob.SerializableData.JobOwner:=JobDetails_JobOwnerDDL
+    ActiveJob.SerializableData.WeatherMorning:=JobWeather_MorningDDL
     return 1
 }
 Push_ActiveJob(_Job){
     global
     Out("Pushing GUI to Job")
     GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
+    GuiControl,ChooseString,JobDetails_JobOwnerDDL,% ActiveJob.SerializableData.JobOwner
+    GuiControl,ChooseString,JobWeather_MorningDDL,% ActiveJob.SerializableData.WeatherMorning
     return 1
 }

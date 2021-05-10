@@ -20,11 +20,11 @@ INTERNAL_LOADING:=true
 #Include lib\JobManager\GUI\Gui_Menu.ahk 
 ;This Include organizes the main GUI's creation
 #Include lib\JobManager\GUI\Gui.ahk
-
+AutoLoad(A_ScriptDir . "\Jobs\newjob.job")
 return ; End of autoload section
 Home::
 
-
+Array_Gui(ActiveJob.SerializableData)
 Out(ListManager.ListToDelimited(ListManager.ListByName("Job_Numbers"),"555555"))
 return
 
@@ -52,5 +52,5 @@ return
 #Include lib\External\JSON.ahk
 ;this external allows AES encryption of strings
 #Include lib\External\AES.ahk
-
+#Include lib\External\Array_GUI.ahk
 

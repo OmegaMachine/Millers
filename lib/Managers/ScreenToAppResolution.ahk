@@ -32,6 +32,12 @@ __New(_Scale:=50){
 		this.Heights.QuarterMinusPadding := Floor((this.Height / 4)) - this.Padding
 	this.Heights.Third := Floor((this.Height / 3))
 	this.Heights.Half := Floor((this.Height / 2))
+
+	this.Positions:={}
+	this.Positions.2ndQuarter := Floor((this.Widths.Quarter  * 1))
+		this.Positions.2ndQuarterPlusPadding  := Floor((this.Widths.Quarter  * 1)) + ( this.Padding * 2 )
+
+
 	return this
 }
 }
