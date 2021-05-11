@@ -27,7 +27,18 @@ Anchor("JobDetails_JobOwnerDDL","w0.125x0.1")
 Anchor("GroupBox_JobWeather","w0.25h0.3x0.3")
 Anchor("JobWeather_MorningText","x0.3")
 Anchor("JobWeather_MorningDDL","w0.125x0.3")
+Anchor("JobWeather_MorningTempText","x0.3")
+Anchor("JobWeather_MorningTempDDL","w0.125x0.3")
 
+Anchor("JobWeather_LunchText","x0.3")
+Anchor("JobWeather_LunchDDL","w0.125x0.3")
+Anchor("JobWeather_LunchTempText","x0.3")
+Anchor("JobWeather_LunchTempDDL","w0.125x0.3")
+
+Anchor("JobWeather_EveningText","x0.3")
+Anchor("JobWeather_EveningDDL","w0.125x0.3")
+Anchor("JobWeather_EveningTempText","x0.3")
+Anchor("JobWeather_EveningTempDDL","w0.125x0.3")
 return
 
 GuiGeneralModify:

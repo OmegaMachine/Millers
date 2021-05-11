@@ -23,9 +23,9 @@ if(isObject(_Load)){
 
 	if(!isObject(_Weather)){
 		this.SerializableData.Weather:={}
-		this.SerializableData.Weather.Morning:=new WeatherState()
-		this.SerializableData.Weather.Lunch:=new WeatherState()
-		this.SerializableData.Weather.Evening:=new WeatherState()
+		this.SerializableData.Weather.Morning:=new WeatherState(0,1,"SUNNY")
+		this.SerializableData.Weather.Lunch:=new WeatherState(0,1,"SUNNY")
+		this.SerializableData.Weather.Evening:=new WeatherState(0,1,"SUNNY")
 	}else{
 		this.SerializableData.Weather:=_Weather
 		}

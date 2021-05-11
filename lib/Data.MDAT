@@ -1,5 +1,5 @@
 [Lists]
 Weather_Types=["SUNNY","Cloudy"]
-Weather_Temperatures=[1]
+Weather_Temperatures=[1,2,3]
 Job_Numbers=["555555","301666"]
 Job_Owners=["Mississippi Mills","Lanark"]
