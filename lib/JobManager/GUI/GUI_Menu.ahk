@@ -17,19 +17,24 @@ Menu, ErrorCheckMenu_JOB, Icon, Check Whole Job,% IconManager.DLLPath,% IconMana
 Menu, ErrorCheckMenu_JOB, Add, Check Roads, ErrorCheck_Roads
 Menu, ErrorCheckMenu_JOB, Icon, Check Roads,% IconManager.DLLPath,% IconManager.IconIDByName("DEFAULT")
 Menu, ErrorCheckMenu, Add,Job,:ErrorCheckMenu_JOB
-    Menu, ErrorCheckMenu, Add,Hours,ErrorCheck_Hours
-    Menu, ErrorCheckMenu, Icon, Hours,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
-    Menu, ErrorCheckMenu_Hours, Add, Man Hours, ErrorCheck_Hours
-    Menu, ErrorCheckMenu_Hours, Icon, Man Hours,% IconManager.DLLPath,% IconManager.IconIDByName("DEFAULT")
-    Menu, ErrorCheckMenu_Hours, Add, Equipment Hours, ErrorCheck_Hours
-    Menu, ErrorCheckMenu_Hours, Icon, Equipment Hours,% IconManager.DLLPath,% IconManager.IconIDByName("DEFAULT")
-    Menu, ErrorCheckMenu, Add,Hours,:ErrorCheckMenu_Hours
-   
+Menu, ErrorCheckMenu, Add,Hours,ErrorCheck_Hours
+Menu, ErrorCheckMenu, Icon, Hours,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
+Menu, ErrorCheckMenu_Hours, Add, Man Hours, ErrorCheck_Hours
+Menu, ErrorCheckMenu_Hours, Icon, Man Hours,% IconManager.DLLPath,% IconManager.IconIDByName("DEFAULT")
+Menu, ErrorCheckMenu_Hours, Add, Equipment Hours, ErrorCheck_Hours
+Menu, ErrorCheckMenu_Hours, Icon, Equipment Hours,% IconManager.DLLPath,% IconManager.IconIDByName("DEFAULT")
+Menu, ErrorCheckMenu, Add,Hours,:ErrorCheckMenu_Hours
+
+Menu, ConversionMenu, Add, Create Daily Work Log, Conversion_ActiveJob_toDailyLog
+Menu, ConversionMenu, Icon, Create Daily Work Log,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, ConversionMenu, Add, Create Weekly Payroll, Conversion_ActiveJob_toPayroll
+Menu, ConversionMenu, Icon, Create Weekly Payroll,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 
 ;Menu, ErrorCheckMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
 ;Menu, ErrorCheckMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 
 Menu, MainMenu, Add, &File, :FileMenu
 Menu, MainMenu, Add, &Error Checking, :ErrorCheckMenu
+Menu, MainMenu, Add, &Conversions, :ConversionMenu
 Menu, MainMenu, Add, &Debug, :DebugMenu
 

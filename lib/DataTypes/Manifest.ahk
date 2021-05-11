@@ -10,6 +10,7 @@
 #Include lib\DataTypes\Street.ahk
 #Include lib\DataTypes\WeatherState.ahk
 #Include lib\DataTypes\TimeState.ahk
+#Include lib\DataTypes\DateTime.ahk
 #Include lib\DataTypes\Road.ahk
 #Include lib\DataTypes\Equipment.ahk
 #Include lib\DataTypes\File.ahk

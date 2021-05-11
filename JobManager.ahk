@@ -2,7 +2,7 @@
 VersionManager:=new VersionManager(1,1,0,1)
 Out("Initializing v" . VersionManager.Current())
 UpdateManager:=new GitUpdateManager(VersionManager.current(),_UpdateURL)
-AppResolution:=new ScreenToAppResolution(50) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
+AppResolution:=new ScreenToAppResolution(75) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
 IconManager:=new IconManager(A_ScriptDir . "\lib\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
 ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container managesa MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
 Serializer:=new Serializer() ;This manager can serialize json strings to objects/arrays and vice versa
@@ -24,8 +24,8 @@ AutoLoad(A_ScriptDir . "\Jobs\newjob.job")
 return ; End of autoload section
 Home::
 
-Array_Gui(ActiveJob.SerializableData)
-Out(ListManager.ListToDelimited(ListManager.ListByName("Job_Numbers"),"555555"))
+    Array_Gui(ActiveJob.SerializableData)
+    Out(ListManager.ListToDelimited(ListManager.ListByName("Job_Numbers"),"555555"))
 return
 
 ;This Include organizes the main GUI's labels (Close,Size etc.)
@@ -36,8 +36,6 @@ return
 #Include lib\JobManager\GUI_Functions.ahk
 ;This include adds debug functions
 #include lib\JobManager\Debug.ahk
-
-
 
 ;This Include organizes the programs classes (datatypes)
 #Include lib\DataTypes\Manifest.ahk
