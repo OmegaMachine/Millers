@@ -4,7 +4,7 @@ Out("Initializing v" . VersionManager.Current())
 UpdateManager:=new GitUpdateManager(VersionManager.current(),_UpdateURL)
 AppResolution:=new ScreenToAppResolution(75) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
 IconManager:=new IconManager(A_ScriptDir . "\lib\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
-ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container managesa MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
+ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container manages MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
 Serializer:=new Serializer() ;This manager can serialize json strings to objects/arrays and vice versa
 Menu, Tray, Icon,% IconManager.DLLPath,% IconManager.IconIDByName("HWC") ;Sets Tray Icon
 ;msgbox,% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"))
@@ -46,6 +46,7 @@ return
 #Include lib\External\Anchor.ahk
 ;This Include handles retrieving the dll resources given name by index
 #Include lib\External\GetIconGroupNameByIndex.ahk
+#Include lib\External\WorkbookWrapper.ahk
 ;this include serializes/deserializes arrays or simple objects to a json string or back to an array/object
 #Include lib\External\JSON.ahk
 ;this external allows AES encryption of strings

@@ -91,7 +91,34 @@ ErrorCheck_Hours:
     Out("Nothing")
 Return
 Conversion_ActiveJob_toDailyLog:
+if(ActiveJob){
+    Out("Converting to daily log...")
+LastDailyLog:=new File(Push_TemplateToFile(A_ScriptDir . "\templates\template_dailylog.xlsx",A_ScriptDir . "\Conversions\DailyLogs\DailyLog (" . ActiveJobFile.FileName . ").xlsx"))
+if(!LastDailyLog){
+Out("Conversion Failed")
+}else{
+    
+Out("Conversion Complete - " . A_ScriptDir . "\Conversions\DailyLogs\DailyLog (" . ActiveJobFile.FileName . ").xlsx")
+}
 
+
+
+
+
+
+    return
+MyDoc:=new WorkbookWrapper(A_ScriptDir . "\Conversions\DailyLogs\DailyLog (" . ActiveJobFile.FileName . ").xlsx",1)
+MyDoc.SetCell("A1","Job Number")
+MyDoc.SetCell("B1",ActiveJob.SerializableData.JobNumber)
+MyDoc.SetCell("A2","Job Owner")
+MyDoc.SetCell("B2",ActiveJob.SerializableData.JobOwner)
+MyDoc.SaveAndClose()
+Out("Conversion Complete")
+MsgBox, 64, Conversion Complete,% "Conversion Complete " . A_ScriptDir . "\DailyLog (" . ActiveJobFile.FileName . ").xlsx"
+}else{
+    Out("convert to daily log failed. No active job.")
+MsgBox, 16, No Active Job, No Active Job
+}
 return
 Conversion_ActiveJob_toPayroll:
 

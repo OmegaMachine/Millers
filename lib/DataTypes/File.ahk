@@ -1,5 +1,8 @@
 ﻿class File{
 __New(_FilePath){
+    if(!_FilePath){
+        return 0   
+    }
     this.FullPath:=_FilePath
      SplitPath, _FilePath, _FileName, _FileDir, _FileExt, _FileNameNoExt, _FileDrive
     this.Exists:=true

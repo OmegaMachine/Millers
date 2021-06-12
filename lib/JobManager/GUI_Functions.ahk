@@ -113,3 +113,26 @@ Push_ActiveJob(_Job){
     ;ActiveJob.SerializableData.Weather.Morning.SerializableData.Status
     return 1
 }
+
+
+
+
+Push_TemplateToFile(_TemplatePath,_FilePath){
+    IfExist, %_FilePath%
+    {
+        Out("Asking Permission to overwrite...")
+        MsgBox, 36, File Already Exists, JobManager is trying to overwrite file %_FilePath%`, is this ok?
+        IfMsgBox,No
+        {
+            
+            NonFatalErrorPrompt("Operation Aborted. Could not replace file.")
+            return 0
+        }
+        FileCopy,% _TemplatePath,% _FilePath ,1
+    }else{
+        FileCopy,% _TemplatePath,% _FilePath 
+    }
+    FileSetTime, ,% _FilePath
+;FileMove,% _TemplatePath,% _FilePath 
+return _FilePath
+}

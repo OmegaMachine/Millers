@@ -16,6 +16,7 @@ GuiSize:
 
     Anchor("Welcome_Text", "hw")
     Anchor("Main_TAB", "hw")
+        ;Tab 1
     ;Groupbox 1
     Anchor("GroupBox_JobDetails","w0.25h0.3")
     Anchor("JobDetails_JobNumberText","x0.05")
@@ -40,6 +41,9 @@ GuiSize:
     Anchor("JobWeather_EveningDDL","w0.125x0.3")
     Anchor("JobWeather_EveningTempText","x0.3")
     Anchor("JobWeather_EveningTempDDL","w0.125x0.3")
+        ;Tab 2
+    ;Groupbox 1 (Add)
+    Anchor("GroupBox_RoadsAdd","w1h0.0625")
 return
 
 GuiGeneralModify:

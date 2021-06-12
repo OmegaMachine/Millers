@@ -23,6 +23,8 @@
 
         this.Heights:={}
         this.Heights.Line:=20
+        this.Heights.Sixteenth := Floor((this.Height / 16))
+        this.Heights.SixteenthMinusPadding := Floor((this.Height / 16)) - this.Padding
         this.Heights.Tenth := Floor((this.Height / 10))
         this.Heights.TenthMinusPadding := Floor((this.Height / 10)) - this.Padding
         this.Heights.Eigth := Floor((this.Height / 8))

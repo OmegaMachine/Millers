@@ -36,5 +36,5 @@ Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" .
 
 ;Tab 4
 Gui,1: Tab, 4
-Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Line . " x" . "m" . " y" . 25 . " vGroupBox_RoadsAdd ",Add Road
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Sixteenth . " x" . "m" . " y" . 25 . " vGroupBox_RoadsAdd ",Add Road
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
