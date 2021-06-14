@@ -136,3 +136,10 @@ Push_TemplateToFile(_TemplatePath,_FilePath){
 ;FileMove,% _TemplatePath,% _FilePath 
 return _FilePath
 }
+
+
+Excel_SetCell(ExcelObject,Cell,Data,_Sheeet:=1){
+ExcelObject.SetCell(Cell,Data,_Sheeet)
+FileSetTime, ,% ExcelObject.DocumentPath
+return 1
+}

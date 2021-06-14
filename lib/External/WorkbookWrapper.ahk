@@ -34,6 +34,8 @@ SaveAndClose(){
 Cell(_CellID,_Sheet:=0){
 	if(!_Sheet){
 		_Sheet:=this.ActiveSheet
+	}else{
+	_Sheet:= this.ExcelObject.Sheets(_Sheet)
 	}
 	return this.ExcelWorkbook.Sheets(_Sheet).Range(_CellID).Value
 }
