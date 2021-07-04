@@ -101,6 +101,8 @@ Push_GUI(){
 
     ActiveJob.SerializableData.Weather.Evening.SerializableData.Status:=JobWeather_EveningDDL
     ActiveJob.SerializableData.Weather.Evening.SerializableData.Temperature:=JobWeather_EveningTempDDL
+
+    ActiveJob.SerializableData.Weather.Humidity:=JobWeather_HumidityDDL
     return 1
 }
 Push_ActiveJob(_Job){
@@ -122,6 +124,8 @@ Push_ActiveJob(_Job){
 
     GuiControl,ChooseString,JobWeather_EveningDDL,% ActiveJob.SerializableData.Weather.Evening.SerializableData.Status
     GuiControl,ChooseString,JobWeather_EveningTempDDL,% ActiveJob.SerializableData.Weather.Evening.SerializableData.Temperature
+
+    GuiControl,,JobWeather_HumidityDDL,% ActiveJob.SerializableData.Weather.Humidity
     ;ActiveJob.SerializableData.Weather.Morning.SerializableData.Status
     return 1
 }

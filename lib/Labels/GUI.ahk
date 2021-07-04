@@ -51,6 +51,9 @@ GuiSize:
     Anchor("JobWeather_EveningTempText","x0.3")
     Anchor("JobWeather_EveningTempDDL","w0.125x0.3")
 
+    Anchor("JobWeather_HumidityText","x0.3")
+    Anchor("JobWeather_HumidityDDL","w0.125x0.3")
+
     Anchor("CopyDetailsButton","x0.25y0.3")
         ;Tab 2
     ;Groupbox 1 (Add)

@@ -70,7 +70,7 @@ class Job extends SerializableClass{
                 this.SerializableData.Weather.Morning:=new WeatherState(0,1,"SUNNY")
                 this.SerializableData.Weather.Lunch:=new WeatherState(0,1,"SUNNY")
                 this.SerializableData.Weather.Evening:=new WeatherState(0,1,"SUNNY")
-                this.SerializableData.Weather.Humidity:="50%"
+                this.SerializableData.Weather.Humidity:=50
             }else{
                 this.SerializableData.Weather:=_Weather
             }
