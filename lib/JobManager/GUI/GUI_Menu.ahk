@@ -2,6 +2,8 @@
 Menu, FileMenu, Icon, Load Job,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, FileMenu, Add, Save Job, FileMenu_SaveJob
 Menu, FileMenu, Icon, Save Job,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, FileMenu, Add, Save Job As, FileMenu_SaveJobAs
+Menu, FileMenu, Icon, Save Job As,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, FileMenu, Add, New Blank Job, FileMenu_New_Blank_Job
 Menu, FileMenu, Icon, New Blank Job,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 
@@ -9,6 +11,11 @@ Menu, DebugMenu, Add, Test, DebugMenu_Test1
 Menu, DebugMenu, Icon, Test,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, DebugMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
 Menu, DebugMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
+
+Menu, ImportMenu, Add, Import Contract Details, Load_JobDetailsFromJob
+Menu, ImportMenu, Icon, Import Contract Details,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+;enu, ImportMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
+;Menu, ImportMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 
 Menu, ErrorCheckMenu, Add,Job,ErrorCheck_ActiveJob
 Menu, ErrorCheckMenu, Icon, Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
@@ -32,9 +39,17 @@ Menu, ConversionMenu, Icon, Create Weekly Payroll,% IconManager.DLLPath,% IconMa
 
 ;Menu, ErrorCheckMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
 ;Menu, ErrorCheckMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
+Menu, SettingsMenu,Add,Autoload Most Recent File,ToggleAutoSave
+if(ListManager.GetData("Autoload",false)){
+Menu, SettingsMenu,Check,Autoload Most Recent File
+}else{
+Menu, SettingsMenu,uncheck,Autoload Most Recent File
+}
 
 Menu, MainMenu, Add, &File, :FileMenu
+Menu, MainMenu, Add, &Import, :ImportMenu
 Menu, MainMenu, Add, &Error Checking, :ErrorCheckMenu
 Menu, MainMenu, Add, &Conversions, :ConversionMenu
-Menu, MainMenu, Add, &Debug, :DebugMenu
+Menu, MainMenu, Add, &Settings, :SettingsMenu
+;Menu, MainMenu, Add, &Debug, :DebugMenu
 

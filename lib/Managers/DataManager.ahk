@@ -35,5 +35,12 @@ _DelimitedList:=_DelimitedList . "|" . Item
     return _DelimitedList
 }
 
-
+GetData(_DataName,_DefaultVal:=0){
+IniRead, _Val, % this.MDATPath, Data, %_DataName%,%_DefaultVal%
+return _Val
+}
+SetData(_DataName,_Val){
+Iniwrite,%_Val%, % this.MDATPath, Data, %_DataName%
+return 1
+}
 }

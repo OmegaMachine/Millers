@@ -35,8 +35,11 @@ return
 ActiveJobFile:=new File(_JobPath)
 ActiveJob:=new Job(Serializer.Deserialize(ActiveJobFile.Read()))
 ;ActiveJob:=Serializer.DeserializeClass(ActiveJobFile.Read())
-INTERNAL_LOADING:=true
+
 LoadJob(ActiveJobFile)
-INTERNAL_LOADING:=false
+ActiveJob.SaveChanges(ActiveJobFile)
+        UnsavedChanges(false)
+         SetTitle(APP_NAME . " - " . ActiveJobFile.FileNameNoExt)
+Out("Load Job Success. <" . ActiveJobFile.FileNameNoExt . ">")
 return 1
 }

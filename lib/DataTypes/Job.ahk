@@ -12,7 +12,9 @@ class Job extends SerializableClass{
             this.SerializableData.JobOwner:=_JobOwner
 
             this.SerializableData.OwnerContact:="Doug Smith"
+            this.SerializableData.OwnerPhone:="613-555-5555"
             this.SerializableData.GeneralContractor:="Smiths - PPG"
+            this.SerializableData.SubContractor:="N/A"
 
             this.SerializableData.Emulsion_Bottom_TargetRate:="1.65"
             this.SerializableData.Emulsion_Top_TargetRate:="1.60"
@@ -26,8 +28,8 @@ class Job extends SerializableClass{
             this.SerializableData.Emulsion_Top_Source:="McAsphalt"
             this.SerializableData.Emulsion_Fog_Source:="McAsphalt"
 
-            this.SerializableData.Emulsion_Additives:="McAsphalt"
-            this.SerializableData.Emulsion_Specifications:="McAsphalt"
+            this.SerializableData.Emulsion_Additives:="No"
+            this.SerializableData.Emulsion_Specifications:="None"
 
             this.SerializableData.Aggregate_Bottom_Type:="Class 2"
             this.SerializableData.Aggregate_Top_Type:="Class 6"
@@ -68,6 +70,7 @@ class Job extends SerializableClass{
                 this.SerializableData.Weather.Morning:=new WeatherState(0,1,"SUNNY")
                 this.SerializableData.Weather.Lunch:=new WeatherState(0,1,"SUNNY")
                 this.SerializableData.Weather.Evening:=new WeatherState(0,1,"SUNNY")
+                this.SerializableData.Weather.Humidity:="50%"
             }else{
                 this.SerializableData.Weather:=_Weather
             }
@@ -75,6 +78,7 @@ class Job extends SerializableClass{
             if(!isObject(_Times)){
                 this.SerializableData.Times:={}
                 this.SerializableData.Times.StartTime:=new TimeState(0,6,30) ;6:30am
+                this.SerializableData.Times.EndTime:=new TimeState(0,18,30) ;6:30pm
             }else{
                 this.SerializableData.Times:=_Times
             }

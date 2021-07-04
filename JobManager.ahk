@@ -9,9 +9,9 @@ Serializer:=new Serializer() ;This manager can serialize json strings to objects
 Menu, Tray, Icon,% IconManager.DLLPath,% IconManager.IconIDByName("HWC") ;Sets Tray Icon
 ;msgbox,% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"))
 MAIN_WINDOW:=0 ;this gets set to the main guis hwnd when it exists
-APP_NAME:="JobManager"
+APP_NAME:="QC Systems"
 Welcome_FLAG:=false
-WelcomeText:="Welcome to JobManager. Load a Project to Continue!"
+WelcomeText:="Welcome to QC Systems. Load a Project to Continue!"
 ActiveJobFile:=0
 ActiveJob:=0
 UnsavedChanges:=False
@@ -20,13 +20,16 @@ INTERNAL_LOADING:=true
 #Include lib\JobManager\GUI\Gui_Menu.ahk 
 ;This Include organizes the main GUI's creation
 #Include lib\JobManager\GUI\Gui.ahk
-AutoLoad(A_ScriptDir . "\Jobs\newjob.job")
+AutoLoadEnabled:=ListManager.GetData("Autoload",false)
+if(AutoLoadEnabled){
+    AutoLoadFile:=ListManager.GetData("LastFile","false")
+    if(AutoLoadFile){
+AutoLoad(AutoLoadFile)
+    }else{
+        Out("Most recent file could not be found.")
+    }
+}
 return ; End of autoload section
-Home::
-
-    Array_Gui(ActiveJob.SerializableData)
-    Out(ListManager.ListToDelimited(ListManager.ListByName("Job_Numbers"),"555555"))
-return
 
 ;This Include organizes the main GUI's labels (Close,Size etc.)
 #Include lib\Labels\GUI.ahk

@@ -25,6 +25,15 @@ GuiSize:
     Anchor("JobDetails_JobOwnerDDL","w0.125x0.1")
     Anchor("JobDetails_JobDateText","x0.05")
     Anchor("JobDetails_JobDateTime","w0.125x0.1")
+    Anchor("JobDetails_JobContactNameText","w0.125x0.1")
+    Anchor("JobDetails_JobContactName","w0.125x0.1")
+    Anchor("JobDetails_JobContactPhoneText","w0.125x0.1")
+    Anchor("JobDetails_JobContactPhone","w0.125x0.1")
+    Anchor("JobDetails_JobContractorText","w0.125x0.1")
+    Anchor("JobDetails_JobContractor","w0.125x0.1")
+    Anchor("JobDetails_JobSubcontractorText","w0.125x0.1")
+    Anchor("JobDetails_JobSubcontractor","w0.125x0.1")
+       
     ;Groupbox 2
     Anchor("GroupBox_JobWeather","w0.25h0.3x0.3")
     Anchor("JobWeather_MorningText","x0.3")
@@ -41,6 +50,8 @@ GuiSize:
     Anchor("JobWeather_EveningDDL","w0.125x0.3")
     Anchor("JobWeather_EveningTempText","x0.3")
     Anchor("JobWeather_EveningTempDDL","w0.125x0.3")
+
+    Anchor("CopyDetailsButton","x0.25y0.3")
         ;Tab 2
     ;Groupbox 1 (Add)
     Anchor("GroupBox_RoadsAdd","w1h0.0625")
@@ -48,4 +59,57 @@ return
 
 GuiGeneralModify:
     UnsavedChanges() 
+return
+
+
+Load_JobDetailsFromJob:
+UnsavedChanges()
+  Out("Loading Job Data.")
+
+        MsgBox, 4388, Contract Information, This will overwrite the current jobs contract information, do you want to continue?
+        IfMsgBox, No
+        {
+            Out("Load Job Data Failed..",1)
+            return
+        }
+    
+    CheckDirectory(A_ScriptDir . "\Jobs")
+    FileSelectFile, _JobPathData, 1, %A_ScriptDir%\Jobs, Select a Job file, Job Files (*.JOB)
+    if(!_JobPathData){
+        Out("Load Job Data Failed. No File Selected",1)
+        return
+    }
+    IfNotExist,%_JobPathData%
+    {
+        Out("Load Job Data Failed. Job file does not exist.",1)
+        NonFatalErrorPrompt("The job file [" . _JobPathData . "] cannot be found.")
+        return
+    }
+
+    if(!isValidJobFile(_JobPathData))
+    {
+        Out("Load Job Data Failed. Invalid Job file.",1)
+        NonFatalErrorPrompt("The file [" . _JobPathData . "] is not a valid job file.")
+        return
+    }
+    ActiveDataFile:=new File(_JobPathData)
+    ActiveOpenData:=new Job(Serializer.Deserialize(ActiveDataFile.Read()))
+
+;Msgbox,% "Other Job " . ActiveOpenData.SerializableData.OwnerContact
+;Msgbox,% "This Job " . ActiveJob.SerializableData.OwnerContact
+
+
+
+ActiveJob.SerializableData.OwnerContact:=ActiveOpenData.SerializableData.OwnerContact
+ActiveJob.SerializableData.OwnerPhone:=ActiveOpenData.SerializableData.OwnerPhone
+ActiveJob.SerializableData.JobNumber:=ActiveOpenData.SerializableData.JobNumber
+ActiveJob.SerializableData.JobOwner:=ActiveOpenData.SerializableData.JobOwner
+ActiveJob.SerializableData.Date:=ActiveOpenData.SerializableData.Date
+ActiveJob.SerializableData.GeneralContractor:=ActiveOpenData.SerializableData.GeneralContractor
+ActiveJob.SerializableData.SubContractor:=ActiveOpenData.SerializableData.SubContractor
+
+ActiveDataFile:=0
+ActiveOpenData:=0
+Push_ActiveJob(ActiveJob)
+Out("Job Details Copied.",1)
 return

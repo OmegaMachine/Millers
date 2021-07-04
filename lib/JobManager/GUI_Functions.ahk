@@ -22,7 +22,7 @@ Show_Welcome(){
 
 SetTitle(_Title){
     global
-    Out("Setting App Title <" . _Title . ">")
+   ; Out("Setting App Title <" . _Title . ">")
     Gui,1:Show,,%_Title%
     return 1
 }
@@ -48,15 +48,19 @@ LoadJob(_JobFile){
     Remove_Welcome()
     SetTitle(APP_NAME . " - " . _JobFile.FileNameNoExt)
     Push_ActiveJob(ActiveJob)
+    ListManager.SetData("LastFile",_JobFile.FullPath)
     return 1
 }
 
 UnsavedChanges(_State:=true){
     global
-    if(!INTERNAL_LOADING){
-        Out("Changes Made")
+ 
+       ; Out("Changes Made")
         UnsavedChanges:=_State
-    }
+        if(_State){
+        SetTitle(APP_NAME . " - " . ActiveJobFile.FileNameNoExt . "*")
+        }
+  
     return 1
 }
 
@@ -84,6 +88,10 @@ Push_GUI(){
     ActiveJob.SerializableData.JobNumber:=JobDetails_JobNumberDDL
     ActiveJob.SerializableData.JobOwner:=JobDetails_JobOwnerDDL
     ActiveJob.SerializableData.Date.SerializableData.TimeString:=JobDetails_JobDateTime
+    ActiveJob.SerializableData.OwnerContact:=JobDetails_JobContactName
+    ActiveJob.SerializableData.OwnerPhone:=JobDetails_JobContactPhone
+     ActiveJob.SerializableData.GeneralContractor:=JobDetails_JobContractor
+      ActiveJob.SerializableData.SubContractor:=JobDetails_JobSubcontractor
 
     ActiveJob.SerializableData.Weather.Morning.SerializableData.Status:=JobWeather_MorningDDL
     ActiveJob.SerializableData.Weather.Morning.SerializableData.Temperature:=JobWeather_MorningTempDDL
@@ -101,6 +109,10 @@ Push_ActiveJob(_Job){
     GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
     GuiControl,ChooseString,JobDetails_JobOwnerDDL,% ActiveJob.SerializableData.JobOwner
     GuiControl,,JobDetails_JobDateTime,% ActiveJob.SerializableData.Date.SerializableData.TimeString
+    GuiControl,,JobDetails_JobContactName,% ActiveJob.SerializableData.OwnerContact
+    GuiControl,,JobDetails_JobContactPhone,% ActiveJob.SerializableData.OwnerPhone
+    GuiControl,ChooseString,JobDetails_JobContractor,% ActiveJob.SerializableData.GeneralContractor
+    GuiControl,ChooseString,JobDetails_JobSubContractor,% ActiveJob.SerializableData.Subcontractor
 
     GuiControl,ChooseString,JobWeather_MorningDDL,% ActiveJob.SerializableData.Weather.Morning.SerializableData.Status
     GuiControl,ChooseString,JobWeather_MorningTempDDL,% ActiveJob.SerializableData.Weather.Morning.SerializableData.Temperature
