@@ -1,10 +1,10 @@
 ﻿
-VersionManager:=new VersionManager(1,1,0,1)
+VersionManager:=new VersionManager(0,1,2,7) ; (Release,GUI,Functionality,Bugs)
 Out("Initializing v" . VersionManager.Current())
 UpdateManager:=new GitUpdateManager(VersionManager.current(),_UpdateURL)
 AppResolution:=new ScreenToAppResolution(75) ;This container translates the screens resolution to the app and app controls. It is given a percentage of the screen.
 IconManager:=new IconManager(A_ScriptDir . "\lib\Test.dll") ;This container manages a resource only dll containing icons. the icons can be referenced by ID or resource name.
-ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container manages MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data
+ListManager:=new DataManager(A_ScriptDir . "\lib\Data.MDAT") ;this container manages MDAT files ( a .ini file). it can draw lists of preset information such as weather types or employee data. as well as basic program settings
 Serializer:=new Serializer() ;This manager can serialize json strings to objects/arrays and vice versa
 Menu, Tray, Icon,% IconManager.DLLPath,% IconManager.IconIDByName("HWC") ;Sets Tray Icon
 ;msgbox,% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"))

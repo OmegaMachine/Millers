@@ -1,5 +1,5 @@
 [Data]
-Autoload=1
+Autoload=0
 LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\June 4th.JOB
 [Lists]
 Weather_Types=["Sunny","Cloudy","Overcast","Foggy"]
