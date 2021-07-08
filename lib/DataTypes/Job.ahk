@@ -1,7 +1,7 @@
 ﻿
 
 class Job extends SerializableClass{
-    __New(_Load:=0,_JobNumber:="",_JobOwner:="",_Roads:="",_Weather:="",_Times:="",_ActiveEmployees:="",_ActiveEquipment:="",_Date:=""){ ;_Roads:An array of roads
+    __New(_Load:=0,_JobNumber:="",_JobOwner:="",_Roads:="",_Weather:="",_Times:="",_ActiveEmployees:="",_ActiveEquipment:="",_Date:="",_ContractWork:=""){ ;_Roads:An array of roads
         ;We must initiate the base class manually
         base.__New()
         if(isObject(_Load)){
@@ -63,6 +63,12 @@ class Job extends SerializableClass{
                 this.SerializableData.Roads:=[]
             }else{
                 this.SerializableData.Roads:=_Roads
+            }
+
+            if(!isObject(_ContractWork)){
+                this.SerializableData.ContractWork:=[]
+            }else{
+                this.SerializableData.ContractWork:=_ContractWork
             }
 
             if(!isObject(_Weather)){

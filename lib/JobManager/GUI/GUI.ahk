@@ -49,8 +49,77 @@ Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " 
 Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vJobWeather_EveningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s" . " y" . "p+45" . " vJobWeather_HumidityText +ReadOnly +Center",Humidity(`%)
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vJobWeather_HumidityDDL +Center gGuiGeneralModify +Number",50
+;Groupbox 3
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Third*2-100 . " x" . "m" . " y" . AppResolution.Positions.2ndThirdPlusPadding . " vGroupBox_JobWork ",Contract Work
+Gui,1: Add, ListView,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding . " x" . "m+10" . " y" . AppResolution.Positions.2ndThirdPlusPadding2 . " vGroupBox_JobWorkLV ",Work Name|Work Type|Has Seal Coat?
+;Tab 1 - Bottom Button Bar
+Gui,1: Add, Button,% "w" . "120" . " h" . "20" . " x" . AppResolution.Width-140 . " y" . AppResolution.Height-50 . " vButton_PrintContractSummary gCreate_WorkSummary",Create Work Summary
 
 ;Tab 4
 Gui,1: Tab, 4
 Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Sixteenth . " x" . "m" . " y" . 25 . " vGroupBox_RoadsAdd ",Add Road
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
+
+
+
+
+
+
+
+
+
+
+
+
+Gui,11: Add, GroupBox, x12 y9 w920 h220 , New Contract Work Details
+Gui,11: Add, Button, x822 y199 w100 h20 gSubmit_NewWork, Add Work
+Gui,11: Add, Text, x22 y29 w90 h20 , Work Name
+Gui,11: Add, Edit, x22 y49 w90 h20 v_NewWork_Name,
+Gui,11: Add, Text, x122 y29 w90 h20 , Work Type
+Gui,11: Add, DropDownList, x122 y49 w90 h200 v_NewWork_Type, S.S.T|D.S.T|Shoulder Work|Granular Sealing
+Gui,11: Add, Text, x222 y29 w60 h20 , Fog Seal?
+Gui,11: Add, DropDownList, x222 y49 w60 h200 v_NewWork_HasFog, Yes|No
+Gui,11: Add, Text, x292 y29 w60 h20 , Length (m2)
+Gui,11: Add, Edit, x292 y49 w60 h20 , Edit
+Gui,11: Add, Text, x362 y29 w60 h20 , Width (m)
+Gui,11: Add, Edit, x362 y49 w60 h20 , Edit
+Gui,11: Add, Text, x432 y29 w60 h20 , Area (m2)
+Gui,11: Add, Edit, x432 y49 w60 h20 , Edit
+Gui,11: Add, Text, x512 y49 w60 h20 , Base Type
+Gui,11: Add, DropDownList, x512 y69 w60 h200 , Yes|No
+Gui,11: Add, Text, x512 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x512 y109 w60 h20 , Edit
+Gui,11: Add, Text, x572 y49 w60 h20 , Top Type
+Gui,11: Add, DropDownList, x572 y69 w60 h200 , Yes|No
+Gui,11: Add, Text, x572 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x572 y109 w60 h20 , Edit
+Gui,11: Add, Text, x632 y49 w60 h20 , Seal Type
+Gui,11: Add, DropDownList, x632 y69 w60 h200 , Yes|No
+Gui,11: Add, Text, x632 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x632 y109 w60 h20 , Edit
+Gui,11: Add, GroupBox, x502 y29 w210 h150 , Emulsion
+Gui,11: Add, Text, x512 y129 w60 h20 , Source
+Gui,11: Add, DropDownList, x512 y149 w60 h200 , Yes|No
+Gui,11: Add, Text, x572 y129 w60 h20 , Source
+Gui,11: Add, DropDownList, x572 y149 w60 h200 , Yes|No
+Gui,11: Add, Text, x632 y129 w60 h20 , Source
+Gui,11: Add, DropDownList, x632 y149 w60 h200 , Yes|No
+Gui,11: Add, GroupBox, x712 y29 w210 h150 , Aggregate
+Gui,11: Add, Text, x722 y49 w60 h20 , Base Type
+Gui,11: Add, DropDownList, x722 y69 w60 h200 , Yes|No
+Gui,11: Add, Text, x722 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x722 y109 w60 h20 , Edit
+Gui,11: Add, Text, x722 y129 w60 h20 , Source
+Gui,11: Add, DropDownList, x722 y149 w60 h200 , Yes|No
+Gui,11: Add, Text, x782 y49 w60 h20 , Top Type
+Gui,11: Add, DropDownList, x782 y69 w60 h200 , Yes|No
+Gui,11: Add, Text, x782 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x782 y109 w60 h20 , Edit
+Gui,11: Add, Text, x782 y129 w60 h20 , Source
+Gui,11: Add, DropDownList, x782 y149 w60 h200 , Yes|No
+Gui,11: Add, Text, x842 y49 w60 h20 , Seal Type
+Gui,11: Add, DropDownList, x842 y69 w60 h200 , Yes|No
+Gui,11: Add, Text, x842 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x842 y109 w60 h20 , Edit
+Gui,11: Add, Text, x842 y129 w60 h20 , Source
+Gui,11: Add, DropDownList, x842 y149 w60 h200 , Yes|No

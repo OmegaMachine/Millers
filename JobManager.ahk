@@ -30,11 +30,14 @@ AutoLoad(AutoLoadFile)
     }
 }
 return ; End of autoload section
-
+Home::
+Show_AddWork()
+return
 ;This Include organizes the main GUI's labels (Close,Size etc.)
 #Include lib\Labels\GUI.ahk
 ;This Include organizes the main GUI's menu labels
 #Include lib\Labels\GUI_Menu.ahk
+#Include lib\JobManager\GUI\AddWork.ahk
 ;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk
 ;This include adds debug functions

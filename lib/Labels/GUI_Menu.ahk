@@ -193,3 +193,4 @@ Menu, SettingsMenu,ToggleCheck,Autoload Most Recent File
 ALState:=ListManager.GetData("Autoload",false)
 ListManager.SetData("Autoload",!ALState)
 return
+

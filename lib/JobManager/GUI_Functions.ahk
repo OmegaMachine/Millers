@@ -90,8 +90,8 @@ Push_GUI(){
     ActiveJob.SerializableData.Date.SerializableData.TimeString:=JobDetails_JobDateTime
     ActiveJob.SerializableData.OwnerContact:=JobDetails_JobContactName
     ActiveJob.SerializableData.OwnerPhone:=JobDetails_JobContactPhone
-     ActiveJob.SerializableData.GeneralContractor:=JobDetails_JobContractor
-      ActiveJob.SerializableData.SubContractor:=JobDetails_JobSubcontractor
+    ActiveJob.SerializableData.GeneralContractor:=JobDetails_JobContractor
+    ActiveJob.SerializableData.SubContractor:=JobDetails_JobSubcontractor
 
     ActiveJob.SerializableData.Weather.Morning.SerializableData.Status:=JobWeather_MorningDDL
     ActiveJob.SerializableData.Weather.Morning.SerializableData.Temperature:=JobWeather_MorningTempDDL
@@ -103,10 +103,13 @@ Push_GUI(){
     ActiveJob.SerializableData.Weather.Evening.SerializableData.Temperature:=JobWeather_EveningTempDDL
 
     ActiveJob.SerializableData.Weather.Humidity:=JobWeather_HumidityDDL
+
+
     return 1
 }
 Push_ActiveJob(_Job){
     global
+    Gui,1:Default
     Out("Pushing Job Details to GUI")
     GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
     GuiControl,ChooseString,JobDetails_JobOwnerDDL,% ActiveJob.SerializableData.JobOwner
@@ -126,6 +129,14 @@ Push_ActiveJob(_Job){
     GuiControl,ChooseString,JobWeather_EveningTempDDL,% ActiveJob.SerializableData.Weather.Evening.SerializableData.Temperature
 
     GuiControl,,JobWeather_HumidityDDL,% ActiveJob.SerializableData.Weather.Humidity
+
+    Gui,1:Listview,GroupBox_JobWorkLV
+    LV_Delete()
+      for index,WorkX in ActiveJob.SerializableData.ContractWork
+        {
+LV_Add("",WorkX.Name,WorkX.Type,WorkX.HasFog)
+        }
+
     ;ActiveJob.SerializableData.Weather.Morning.SerializableData.Status
     return 1
 }
@@ -158,4 +169,45 @@ Excel_SetCell(ExcelObject,Cell,Data,_Sheeet:=1){
 ExcelObject.SetCell(Cell,Data,_Sheeet)
 FileSetTime, ,% ExcelObject.DocumentPath
 return 1
+}
+
+Add_ContractWork(Work_name,Work_Type,Work_HasFog){
+    global
+    if(!Work_Name){
+         NonFatalErrorPrompt("Operation Aborted. File Name Invalid.")
+        Out("Invalid Work Name")
+        return 0
+    }
+     for index,WorkX in ActiveJob.SerializableData.ContractWork
+        {
+            if(WorkX.Name = Work_Name){
+                NonFatalErrorPrompt("Operation Aborted. File Name Invalid.")
+                Out("Work Name already Exists")
+                return 0
+            }
+        }
+    NewWork:={}
+    NewWork.Name:=Work_Name
+    NewWork.Type:=Work_Type
+    NewWork.HasFog:=Work_HasFog
+ActiveJob.SerializableData.ContractWork.Push(NewWork)
+Push_ActiveJob(ActiveJob)
+UnsavedChanges(true)
+    return 1
+}
+Remove_ContractWork(Work_name){
+    global
+    NewList:=[]
+     for index,WorkX in ActiveJob.SerializableData.ContractWork
+        {
+            if(WorkX.Name = Work_Name){
+               Continue
+            }else{
+                NewList.Push(WorkX)
+            }
+        }
+        ActiveJob.SerializableData.ContractWork:=NewList
+        Push_ActiveJob(ActiveJob)
+        UnsavedChanges(true)
+    return 1
 }

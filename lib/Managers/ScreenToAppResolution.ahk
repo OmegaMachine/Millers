@@ -9,6 +9,7 @@
         this.Padding:=10
         this.Widths:={}
         this.Widths.Full:=Floor((this.Width) - (this.Padding * 2))
+        this.Widths.FullMinusPadding:=Floor((this.Width) - (this.Padding * 4))
         this.Widths.Tenth := Floor((this.Width / 10))
         this.Widths.TenthMinusPadding := Floor((this.Width / 10)) - this.Padding
         this.Widths.Eigth := Floor((this.Width / 8))
@@ -35,11 +36,14 @@
         this.Heights.Quarter := Floor((this.Height / 4))
         this.Heights.QuarterMinusPadding := Floor((this.Height / 4)) - this.Padding
         this.Heights.Third := Floor((this.Height / 3))
+        this.Heights.ThirdMinusPadding := Floor((this.Height / 3)) - (this.Padding * 4)
         this.Heights.Half := Floor((this.Height / 2))
 
         this.Positions:={}
         this.Positions.2ndQuarter := Floor((this.Widths.Quarter * 1))
         this.Positions.2ndQuarterPlusPadding := Floor((this.Widths.Quarter * 1)) + ( this.Padding * 2 )
+        this.Positions.2ndThirdPlusPadding := Floor((this.Heights.Third * 1)) + ( this.Padding * 4 )
+        this.Positions.2ndThirdPlusPadding2 := Floor((this.Heights.Third * 1)) + ( this.Padding * 6 )
 
         return this
     }

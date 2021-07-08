@@ -55,6 +55,11 @@ GuiSize:
     Anchor("JobWeather_HumidityDDL","w0.125x0.3")
 
     Anchor("CopyDetailsButton","x0.25y0.3")
+    ;Groupbox 3
+     Anchor("GroupBox_JobWork","wy0.3h0.3")
+     Anchor("GroupBox_JobWorkLV","wy0.3h0.3")
+     ;Tab 1 - Bottom Button Bar
+     Anchor("Button_PrintContractSummary","xy")
         ;Tab 2
     ;Groupbox 1 (Add)
     Anchor("GroupBox_RoadsAdd","w1h0.0625")
@@ -115,4 +120,8 @@ ActiveDataFile:=0
 ActiveOpenData:=0
 Push_ActiveJob(ActiveJob)
 Out("Job Details Copied.",1)
+return
+
+Create_WorkSummary:
+Out("Not Implemented")
 return
