@@ -14,6 +14,11 @@ Menu, DebugMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.Icon
 
 Menu, ImportMenu, Add, Import Contract Details, Load_JobDetailsFromJob
 Menu, ImportMenu, Icon, Import Contract Details,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+
+Menu, ContractMenu, Add, Add Contract Work, Show_AddWorkLabel
+Menu, ContractMenu, Icon, Add Contract Work,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, ImportMenu, Add, Import Contract Details, Load_JobDetailsFromJob
+Menu, ImportMenu, Icon, Import Contract Details,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 ;enu, ImportMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
 ;Menu, ImportMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 
@@ -36,7 +41,8 @@ Menu, ConversionMenu, Add, Create Daily Work Log, Conversion_ActiveJob_toDailyLo
 Menu, ConversionMenu, Icon, Create Daily Work Log,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, ConversionMenu, Add, Create Weekly Payroll, Conversion_ActiveJob_toPayroll
 Menu, ConversionMenu, Icon, Create Weekly Payroll,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
-
+Menu, ConversionMenu, Add, Create Work Summary, Create_WorkSummary
+Menu, ConversionMenu, Icon, Create Work Summary,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 ;Menu, ErrorCheckMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
 ;Menu, ErrorCheckMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 Menu, SettingsMenu,Add,Autoload Most Recent File,ToggleAutoSave
@@ -47,6 +53,7 @@ Menu, SettingsMenu,uncheck,Autoload Most Recent File
 }
 
 Menu, MainMenu, Add, &File, :FileMenu
+Menu, MainMenu, Add, &Contract, :ContractMenu
 Menu, MainMenu, Add, &Import, :ImportMenu
 Menu, MainMenu, Add, &Error Checking, :ErrorCheckMenu
 Menu, MainMenu, Add, &Conversions, :ConversionMenu
