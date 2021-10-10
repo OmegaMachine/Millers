@@ -1,11 +1,17 @@
 [Data]
 Autoload=1
-LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\LLLL.JOB
+LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\October1.JOB
 [Lists]
+YesNo=["Yes","No"]
+Work_Types=["S.S.T","D.S.T","Granular Sealing","Shoulder Work"]
+Emulsion_Types=["N/A","HF-150P","CBC"]
+Aggregate_Types=["N/A","CLASS 2","CLASS 6","Hydro Sand","Stone Dust"]
+Emulsion_Sources=["N/A","McAsphalt - Oshawa"]
+Aggregate_Sources=["N/A","Tackaberry - Lawsons"]
 Weather_Types=["Sunny","Cloudy","Overcast","Foggy"]
 Weather_Temperatures=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
-Job_Numbers=["555555","301666"]
-Job_Owners=["Mississippi Mills","Lanark","North Stormont","South Stormont","South Frontenac","Frontenac islands","Tay Valley",Drummond/North Elmsley"]
+Job_Numbers=["555555","301666","<Add New>"]
+Job_Owners=["Mississippi Mills","Lanark","North Stormont","South Stormont","South Frontenac","Frontenac islands","Tay Valley","Drummond/North Elmsley"]
 Employees=[111111,123123]
 GeneralContractors=["Smith's - PPG","Cavanagh"]
 SubContractors=["N/A","Cavanagh"]

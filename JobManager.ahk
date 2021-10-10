@@ -9,7 +9,7 @@ Serializer:=new Serializer() ;This manager can serialize json strings to objects
 Menu, Tray, Icon,% IconManager.DLLPath,% IconManager.IconIDByName("HWC") ;Sets Tray Icon
 ;msgbox,% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"))
 MAIN_WINDOW:=0 ;this gets set to the main guis hwnd when it exists
-APP_NAME:="QC Systems"
+APP_NAME:="QC Systems - Daily Logging"
 Welcome_FLAG:=false
 WelcomeText:="Welcome to QC Systems. Load a Project to Continue!"
 ActiveJobFile:=0
@@ -38,6 +38,8 @@ return
 ;This Include organizes the main GUI's menu labels
 #Include lib\Labels\GUI_Menu.ahk
 #Include lib\JobManager\GUI\AddWork.ahk
+#Include lib\JobManager\GUI\RemoveWork.ahk
+#Include lib\JobManager\GUI\EditWork.ahk
 ;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk
 ;This include adds debug functions

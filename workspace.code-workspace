@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"vscode-ahk-plus.executePath": "C:\\Program Files\\AutoHotkey\\AutoHotkeyU64.exe"
+	}
+}

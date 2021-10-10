@@ -15,8 +15,15 @@ Menu, DebugMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.Icon
 Menu, ImportMenu, Add, Import Contract Details, Load_JobDetailsFromJob
 Menu, ImportMenu, Icon, Import Contract Details,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 
+Menu, ContractMenu, Add, Import Contract Details, Load_JobDetailsFromJob
+Menu, ContractMenu, Icon, Import Contract Details,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, ContractMenu, Add, Add Contract Work, Show_AddWorkLabel
 Menu, ContractMenu, Icon, Add Contract Work,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, ContractMenu, Add, Remove Contract Work, Show_RemoveWorkLabel
+Menu, ContractMenu, Icon, Remove Contract Work,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, ContractMenu, Add, Create Work Summary, Create_WorkSummary
+Menu, ContractMenu, Icon, Create Work Summary,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+
 Menu, ImportMenu, Add, Import Contract Details, Load_JobDetailsFromJob
 Menu, ImportMenu, Icon, Import Contract Details,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 ;enu, ImportMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job

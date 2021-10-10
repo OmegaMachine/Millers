@@ -6,7 +6,7 @@ Gui,1: Add,StatusBar,,% "Welcome! v" . VersionManager.Current() . " loaded!"
 ;Gui,1: Color, 4E4848
 Gui,1: Add, Text,% "w" . AppResolution.Width . " h" . 100 . " x" . 0 . " y" . 0 . " vWelcome_Text +ReadOnly",%WelcomeText%
 
-Gui,1: Add, Tab2,% "w" . AppResolution.Width . " h" . AppResolution.height . " x0" . "" . " y0" . "" . " vMain_TAB +Hidden ", Job Details|Man Hours|Equipment Hours|Roads
+Gui,1: Add, Tab2,% "w" . AppResolution.Width . " h" . AppResolution.height . " x0" . "" . " y0" . "" . " vMain_TAB +Hidden ", Contract Details | Daily Logging ;|Man Hours|Equipment Hours|Roads
 ;Tab 1
 Gui,1: Tab, 1
 ;Groupbox 1
@@ -51,13 +51,16 @@ Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " 
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vJobWeather_HumidityDDL +Center gGuiGeneralModify +Number",50
 ;Groupbox 3
 Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Third*2-100 . " x" . "m" . " y" . AppResolution.Positions.2ndThirdPlusPadding . " vGroupBox_JobWork ",Contract Work
-Gui,1: Add, ListView,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding . " x" . "m+10" . " y" . AppResolution.Positions.2ndThirdPlusPadding2 . " vGroupBox_JobWorkLV ",Work Name|Work Type|Has Seal Coat?
+Gui,1: Add, ListView,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding . " x" . "m+10" . " y" . AppResolution.Positions.2ndThirdPlusPadding2 . " vGroupBox_JobWorkLV ",Work Name|Work Type|Has Seal Coat?|Length (m)|Width (m)|Area (m2)|Notes
+Gui,1: Add, Edit,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding2 . " x" . "m+10" . " y" . AppResolution.Positions.3rdThirdPlusPadding2 . " vContract_JobWorkNotes gGuiGeneralModify",
+
 ;Tab 1 - Bottom Button Bar
 Gui,1: Add, Button,% "w" . "120" . " h" . "20" . " x" . AppResolution.Width-140 . " y" . AppResolution.Height-50 . " vButton_PrintContractSummary gCreate_WorkSummary",Create Work Summary
 
-;Tab 4
-Gui,1: Tab, 4
-Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Sixteenth . " x" . "m" . " y" . 25 . " vGroupBox_RoadsAdd ",Add Road
+;Tab 2
+Gui,1: Tab, 2
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Full . " x" . "m" . " y" . 25 . " vGroupBox_DailyLogging ",Daily Logging
+
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
 
 
@@ -70,56 +73,133 @@ Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . A
 
 
 
-
+Gui,11: +Owner1
 Gui,11: Add, GroupBox, x12 y9 w920 h220 , New Contract Work Details
 Gui,11: Add, Button, x822 y199 w100 h20 gSubmit_NewWork, Add Work
 Gui,11: Add, Text, x22 y29 w90 h20 , Work Name
 Gui,11: Add, Edit, x22 y49 w90 h20 v_NewWork_Name,
 Gui,11: Add, Text, x122 y29 w90 h20 , Work Type
-Gui,11: Add, DropDownList, x122 y49 w90 h200 v_NewWork_Type, S.S.T|D.S.T|Shoulder Work|Granular Sealing
+Gui,11: Add, DropDownList, x122 y49 w90 h200 v_NewWork_Type,% ListManager.ListToDelimited(ListManager.ListByName("Work_Types"),1)
 Gui,11: Add, Text, x222 y29 w60 h20 , Fog Seal?
-Gui,11: Add, DropDownList, x222 y49 w60 h200 v_NewWork_HasFog, Yes|No
-Gui,11: Add, Text, x292 y29 w60 h20 , Length (m2)
-Gui,11: Add, Edit, x292 y49 w60 h20 , Edit
+Gui,11: Add, DropDownList, x222 y49 w60 h200 v_NewWork_HasFog,% ListManager.ListToDelimited(ListManager.ListByName("YesNo"),2)
+Gui,11: Add, Text, x292 y29 w60 h20 , Length (m)
+Gui,11: Add, Edit, x292 y49 w60 h20 v_NewWork_Length gUpdate_Area, 0
 Gui,11: Add, Text, x362 y29 w60 h20 , Width (m)
-Gui,11: Add, Edit, x362 y49 w60 h20 , Edit
+Gui,11: Add, Edit, x362 y49 w60 h20 v_NewWork_Width gUpdate_Area, 0
 Gui,11: Add, Text, x432 y29 w60 h20 , Area (m2)
-Gui,11: Add, Edit, x432 y49 w60 h20 , Edit
-Gui,11: Add, Text, x512 y49 w60 h20 , Base Type
-Gui,11: Add, DropDownList, x512 y69 w60 h200 , Yes|No
-Gui,11: Add, Text, x512 y89 w60 h20 , Target Rate
-Gui,11: Add, Edit, x512 y109 w60 h20 , Edit
-Gui,11: Add, Text, x572 y49 w60 h20 , Top Type
-Gui,11: Add, DropDownList, x572 y69 w60 h200 , Yes|No
-Gui,11: Add, Text, x572 y89 w60 h20 , Target Rate
-Gui,11: Add, Edit, x572 y109 w60 h20 , Edit
-Gui,11: Add, Text, x632 y49 w60 h20 , Seal Type
-Gui,11: Add, DropDownList, x632 y69 w60 h200 , Yes|No
-Gui,11: Add, Text, x632 y89 w60 h20 , Target Rate
-Gui,11: Add, Edit, x632 y109 w60 h20 , Edit
+Gui,11: Add, Edit, x432 y49 w60 h20 v_NewWork_Area +ReadOnly, 0
+
+Gui,11: Add, Text, x22 y69 w90 h20 , Notes
+Gui,11: Add, Edit, x22 y89 w350 h100 v_NewWork_Notes,
+
 Gui,11: Add, GroupBox, x502 y29 w210 h150 , Emulsion
+Gui,11: Add, Text, x512 y49 w60 h20 , Base Type
+Gui,11: Add, DropDownList, x512 y69 w60 h200 v_NewWork_BottomEmulsion_Type,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,11: Add, Text, x512 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x512 y109 w60 h20 v_NewWork_BottomEmulsion_Rate, 1.6
+Gui,11: Add, Text, x572 y49 w60 h20 , Top Type
+Gui,11: Add, DropDownList, x572 y69 w60 h200 v_NewWork_TopEmulsion_Type,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,11: Add, Text, x572 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x572 y109 w60 h20 v_NewWork_TopEmulsion_Rate, 1.6
+Gui,11: Add, Text, x632 y49 w60 h20 , Seal Type
+Gui,11: Add, DropDownList, x632 y69 w60 h200 v_NewWork_SealCoatEmulsion_Type,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,11: Add, Text, x632 y89 w60 h20 , Target Rate
+Gui,11: Add, Edit, x632 y109 w60 h20 v_NewWork_SealCoatEmulsion_Rate, 0.7
 Gui,11: Add, Text, x512 y129 w60 h20 , Source
-Gui,11: Add, DropDownList, x512 y149 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x512 y149 w60 h200 v_NewWork_BottomEmulsion_Source,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
 Gui,11: Add, Text, x572 y129 w60 h20 , Source
-Gui,11: Add, DropDownList, x572 y149 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x572 y149 w60 h200 v_NewWork_TopEmulsion_Source,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
 Gui,11: Add, Text, x632 y129 w60 h20 , Source
-Gui,11: Add, DropDownList, x632 y149 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x632 y149 w60 h200 v_NewWork_SealCoatEmulsion_Source,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
 Gui,11: Add, GroupBox, x712 y29 w210 h150 , Aggregate
 Gui,11: Add, Text, x722 y49 w60 h20 , Base Type
-Gui,11: Add, DropDownList, x722 y69 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x722 y69 w60 h200 v_NewWork_BottomAgg_Type,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Types"),1)
 Gui,11: Add, Text, x722 y89 w60 h20 , Target Rate
-Gui,11: Add, Edit, x722 y109 w60 h20 , Edit
+Gui,11: Add, Edit, x722 y109 w60 h20 v_NewWork_BottomAgg_Rate,17
 Gui,11: Add, Text, x722 y129 w60 h20 , Source
-Gui,11: Add, DropDownList, x722 y149 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x722 y149 w60 h200 v_NewWork_BottomAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)
 Gui,11: Add, Text, x782 y49 w60 h20 , Top Type
-Gui,11: Add, DropDownList, x782 y69 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x782 y69 w60 h200 v_NewWork_TopAgg_Type,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Types"),1)
 Gui,11: Add, Text, x782 y89 w60 h20 , Target Rate
-Gui,11: Add, Edit, x782 y109 w60 h20 , Edit
+Gui,11: Add, Edit, x782 y109 w60 h20 v_NewWork_TopAgg_Rate, 19
 Gui,11: Add, Text, x782 y129 w60 h20 , Source
-Gui,11: Add, DropDownList, x782 y149 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x782 y149 w60 h200 v_NewWork_TopAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)
 Gui,11: Add, Text, x842 y49 w60 h20 , Seal Type
-Gui,11: Add, DropDownList, x842 y69 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x842 y69 w60 h200 v_NewWork_SealCoatAgg_Type,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Types"),1)
 Gui,11: Add, Text, x842 y89 w60 h20 , Target Rate
-Gui,11: Add, Edit, x842 y109 w60 h20 , Edit
+Gui,11: Add, Edit, x842 y109 w60 h20 v_NewWork_SealCoatAgg_Rate, 2
 Gui,11: Add, Text, x842 y129 w60 h20 , Source
-Gui,11: Add, DropDownList, x842 y149 w60 h200 , Yes|No
+Gui,11: Add, DropDownList, x842 y149 w60 h200 v_NewWork_SealCoatAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)
+
+
+
+
+
+
+
+
+;Remove Contract Work
+Gui,12: +Owner1
+Gui,12: Add, GroupBox, x12 y9 w380 h80 ,Contract Work Name
+Gui,12: Add, Button, x280 y50 w100 h20 gSubmit_RemoveWork, Remove Work
+Gui,12: Add, Text, x22 y29 w90 h20 , Work Name
+Gui,12: Add, DropDownList, x22 y49 w200 h200 v_RemoveWork_Name,
+
+;Edit Work
+Gui,13: +Owner1
+Gui,13: Add, GroupBox, x12 y9 w920 h220 , Contract Work Details
+Gui,13: Add, Button, x822 y199 w100 h20 gSubmit_EditWork, Save
+Gui,13: Add, Text, x22 y29 w90 h20 , Work Name
+Gui,13: Add, Edit, x22 y49 w90 h20 v_EditWork_Name,
+Gui,13: Add, Text, x122 y29 w90 h20 , Work Type
+Gui,13: Add, DropDownList, x122 y49 w90 h200 v_EditWork_Type,% ListManager.ListToDelimited(ListManager.ListByName("Work_Types"),1)
+Gui,13: Add, Text, x222 y29 w60 h20 , Fog Seal?
+Gui,13: Add, DropDownList, x222 y49 w60 h200 v_EditWork_HasFog,% ListManager.ListToDelimited(ListManager.ListByName("YesNo"),2)
+Gui,13: Add, Text, x292 y29 w60 h20 , Length (m)
+Gui,13: Add, Edit, x292 y49 w60 h20 v_EditWork_Length gUpdate_AreaEdit, 0
+Gui,13: Add, Text, x362 y29 w60 h20 , Width (m)
+Gui,13: Add, Edit, x362 y49 w60 h20 v_EditWork_Width gUpdate_AreaEdit, 0
+Gui,13: Add, Text, x432 y29 w60 h20 , Area (m2)
+Gui,13: Add, Edit, x432 y49 w60 h20 v_EditWork_Area +ReadOnly, 0
+
+Gui,13: Add, Text, x22 y69 w90 h20 , Notes
+Gui,13: Add, Edit, x22 y89 w350 h100 v_EditWork_Notes,
+
+Gui,13: Add, GroupBox, x502 y29 w210 h150 , Emulsion
+Gui,13: Add, Text, x512 y49 w60 h20 , Base Type
+Gui,13: Add, DropDownList, x512 y69 w60 h200 v_EditWork_BottomEmulsion_Type ,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,13: Add, Text, x512 y89 w60 h20 , Target Rate
+Gui,13: Add, Edit, x512 y109 w60 h20 v_EditWork_BottomEmulsion_Rate, 1.6
+Gui,13: Add, Text, x572 y49 w60 h20 , Top Type
+Gui,13: Add, DropDownList, x572 y69 w60 h200 v_EditWork_TopEmulsion_Type ,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,13: Add, Text, x572 y89 w60 h20 , Target Rate
+Gui,13: Add, Edit, x572 y109 w60 h20 v_EditWork_TopEmulsion_Rate, 1.6
+Gui,13: Add, Text, x632 y49 w60 h20 , Seal Type
+Gui,13: Add, DropDownList, x632 y69 w60 h200 v_EditWork_SealCoatEmulsion_Type,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,13: Add, Text, x632 y89 w60 h20 , Target Rate
+Gui,13: Add, Edit, x632 y109 w60 h20 v_EditWork_SealCoatEmulsion_Rate, 0.7
+Gui,13: Add, Text, x512 y129 w60 h20 , Source
+Gui,13: Add, DropDownList, x512 y149 w60 h200 v_EditWork_BottomEmulsion_Source,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
+Gui,13: Add, Text, x572 y129 w60 h20 , Source
+Gui,13: Add, DropDownList, x572 y149 w60 h200 v_EditWork_TopEmulsion_Source,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
+Gui,13: Add, Text, x632 y129 w60 h20 , Source
+Gui,13: Add, DropDownList, x632 y149 w60 h200 v_EditWork_SealCoatEmulsion_Source,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
+Gui,13: Add, GroupBox, x712 y29 w210 h150 , Aggregate
+Gui,13: Add, Text, x722 y49 w60 h20 , Base Type
+Gui,13: Add, DropDownList, x722 y69 w60 h200 v_EditWork_BottomAgg_Type,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Types"),1)
+Gui,13: Add, Text, x722 y89 w60 h20 , Target Rate
+Gui,13: Add, Edit, x722 y109 w60 h20 v_EditWork_BottomAgg_Rate,17
+Gui,13: Add, Text, x722 y129 w60 h20 , Source
+Gui,13: Add, DropDownList, x722 y149 w60 h200 v_EditWork_BottomAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)
+Gui,13: Add, Text, x782 y49 w60 h20 , Top Type
+Gui,13: Add, DropDownList, x782 y69 w60 h200 v_EditWork_TopAgg_Type,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Types"),1)
+Gui,13: Add, Text, x782 y89 w60 h20 , Target Rate
+Gui,13: Add, Edit, x782 y109 w60 h20 v_EditWork_TopAgg_Rate, 19
+Gui,13: Add, Text, x782 y129 w60 h20 , Source
+Gui,13: Add, DropDownList, x782 y149 w60 h200 v_EditWork_TopAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)
+Gui,13: Add, Text, x842 y49 w60 h20 , Seal Type
+Gui,13: Add, DropDownList, x842 y69 w60 h200 v_EditWork_SealCoatAgg_Type,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Types"),1)
+Gui,13: Add, Text, x842 y89 w60 h20 , Target Rate
+Gui,13: Add, Edit, x842 y109 w60 h20 v_EditWork_SealCoatAgg_Rate, 2
+Gui,13: Add, Text, x842 y129 w60 h20 , Source
+Gui,13: Add, DropDownList, x842 y149 w60 h200 v_EditWork_SealCoatAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)

@@ -15,6 +15,7 @@ class Job extends SerializableClass{
             this.SerializableData.OwnerPhone:="613-555-5555"
             this.SerializableData.GeneralContractor:="Smiths - PPG"
             this.SerializableData.SubContractor:="N/A"
+            this.SerializableData.Contract_WorkNotes:="Work Notes"
 
             this.SerializableData.Emulsion_Bottom_TargetRate:="1.65"
             this.SerializableData.Emulsion_Top_TargetRate:="1.60"

@@ -1,4 +1,19 @@
-﻿
+﻿GuiContextMenu:
+if(A_GuiControl="GroupBox_JobWorkLV"){
+    RowX:=LV_GetNext()
+    LV_GetText(RowXText, RowX, 1)
+if(RowX){
+    Menu, EditContractWorkMenu, Add, Edit, EditWork
+    Menu, EditContractWorkMenu, Add, Remove, Context_RemoveWork
+    Menu, EditContractWorkMenu, Add, New Contract Work, Context_NewWork
+    Menu, EditContractWorkMenu, Show
+}else{
+    Menu, WorkMenuContext, Add, New Contract Work, Context_NewWork
+    Menu, WorkMenuContext, Show
+}
+
+}
+return
 GuiClose:
     if(UnsavedChanges){
         MsgBox, 4388, Unsaved Changes, There are unsaved changes to the current job file. would you like to discard them and close the active job?
@@ -58,15 +73,26 @@ GuiSize:
     ;Groupbox 3
      Anchor("GroupBox_JobWork","wy0.3h0.3")
      Anchor("GroupBox_JobWorkLV","wy0.3h0.3")
+     Anchor("Contract_JobWorkNotes","wy0.3h0.3")
+     
      ;Tab 1 - Bottom Button Bar
      Anchor("Button_PrintContractSummary","xy")
         ;Tab 2
     ;Groupbox 1 (Add)
-    Anchor("GroupBox_RoadsAdd","w1h0.0625")
+    Anchor("GroupBox_DailyLogging","w1h1")
+    CurrHeight:=A_GuiHeight
+    CurrWidth:=A_GUIWidth
 return
 
 GuiGeneralModify:
-    UnsavedChanges() 
+    UnsavedChanges()
+   if(A_GuiControl="JobDetails_JobNumberDDL"){
+       Gui,1:Submit,NoHide
+       if(JobDetails_JobNumberDDL = "<Add New>"){
+           GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
+           msgbox,Adding New Job Number **Incomplete
+       }
+   }
 return
 
 
@@ -74,7 +100,7 @@ Load_JobDetailsFromJob:
 UnsavedChanges()
   Out("Loading Job Data.")
 
-        MsgBox, 4388, Contract Information, This will overwrite the current jobs contract information, do you want to continue?
+        MsgBox, 4388, Contract Information, This will overwrite the current jobs contract details, including contract work, do you want to continue?
         IfMsgBox, No
         {
             Out("Load Job Data Failed..",1)
@@ -115,6 +141,9 @@ ActiveJob.SerializableData.JobOwner:=ActiveOpenData.SerializableData.JobOwner
 ActiveJob.SerializableData.Date:=ActiveOpenData.SerializableData.Date
 ActiveJob.SerializableData.GeneralContractor:=ActiveOpenData.SerializableData.GeneralContractor
 ActiveJob.SerializableData.SubContractor:=ActiveOpenData.SerializableData.SubContractor
+ActiveJob.SerializableData.ContractWork:=ActiveOpenData.SerializableData.ContractWork
+ActiveJob.SerializableData.Contract_WorkNotes:=ActiveOpenData.SerializableData.Contract_WorkNotes
+
 
 ActiveDataFile:=0
 ActiveOpenData:=0

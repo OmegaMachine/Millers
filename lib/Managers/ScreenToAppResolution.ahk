@@ -1,5 +1,6 @@
 ﻿class ScreenToAppResolution{
     __New(_Scale:=50){
+        this.BottomBarHeight:=25
         this.Scale:=_Scale
         this.ScaleRate:=_Scale/100
         this.Width:=A_ScreenWidth * this.ScaleRate
@@ -23,6 +24,7 @@
         this.Widths.Half := Floor((this.Width / 2))
 
         this.Heights:={}
+        this.Heights.Full:=Floor((this.height) - (this.Padding * 3) - (this.BottomBarHeight))
         this.Heights.Line:=20
         this.Heights.Sixteenth := Floor((this.Height / 16))
         this.Heights.SixteenthMinusPadding := Floor((this.Height / 16)) - this.Padding
@@ -37,6 +39,7 @@
         this.Heights.QuarterMinusPadding := Floor((this.Height / 4)) - this.Padding
         this.Heights.Third := Floor((this.Height / 3))
         this.Heights.ThirdMinusPadding := Floor((this.Height / 3)) - (this.Padding * 4)
+        this.Heights.ThirdMinusPadding2 := Floor((this.Height / 4)) - (this.Padding * 6)
         this.Heights.Half := Floor((this.Height / 2))
 
         this.Positions:={}
@@ -44,6 +47,7 @@
         this.Positions.2ndQuarterPlusPadding := Floor((this.Widths.Quarter * 1)) + ( this.Padding * 2 )
         this.Positions.2ndThirdPlusPadding := Floor((this.Heights.Third * 1)) + ( this.Padding * 4 )
         this.Positions.2ndThirdPlusPadding2 := Floor((this.Heights.Third * 1)) + ( this.Padding * 6 )
+        this.Positions.3rdThirdPlusPadding2 := Floor((this.Heights.Third * 2)) + ( this.Padding * 8 )
 
         return this
     }
