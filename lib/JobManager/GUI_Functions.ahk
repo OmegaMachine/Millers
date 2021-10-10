@@ -32,6 +32,10 @@ NonFatalErrorPrompt(_Text:=""){
     MsgBox, 4112, Nonfatal Error,A nonfatal error has occured. The operation will likely be aborted.`n%_Text%
     return 1
 }
+InfoMessage(_Text:=""){
+    MsgBox, 262208, Information,%_Text%
+    return 1
+}
 
 isValidJobFile(_JobPath){
     _Valid:=True
@@ -132,6 +136,7 @@ Push_ActiveJob(_Job){
     GuiControl,,JobWeather_HumidityDDL,% ActiveJob.SerializableData.Weather.Humidity
     GuiControl,,Contract_JobWorkNotes,% ActiveJob.SerializableData.Contract_WorkNotes
 
+GuiControl,,DailyLogging_Days,% "|" . ActiveJob.DailyLogsList()
     Gui,1:Listview,GroupBox_JobWorkLV
     GLOBAL_CONTRACTWORKLIST:=[]
     LV_Delete()
@@ -300,6 +305,34 @@ Edit_ContractWork(Original_Work_Name,Work_name,Work_Type,Work_HasFog,Work_Length
             }
         }
 Push_ActiveJob(ActiveJob)
+UnsavedChanges(true)
+    return 1
+}
+
+
+Add_DailyLog(__Day){
+    global
+    if(!__Day){
+         NonFatalErrorPrompt("Operation Aborted. Date is Invalid.")
+        Out("Invalid Date")
+        return 0
+    }
+     for index,DayX in ActiveJob.SerializableData.DailyLogs
+        {
+            if(DayX.Date = __Day){
+                NonFatalErrorPrompt("Operation Aborted. Work Date Invalid.")
+                Out("Work Date already Exists")
+                return 0
+            }
+        }
+        NewDailyLog:={}
+        NewDailyLog.Date:=__Day
+
+        NewDailyLog.Vessals:=[]
+        
+
+        ActiveJob.SerializableData.DailyLogs.Push(NewDailyLog)
+        Push_ActiveJob(ActiveJob)
 UnsavedChanges(true)
     return 1
 }

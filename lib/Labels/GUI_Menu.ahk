@@ -119,6 +119,31 @@ Return
 ErrorCheck_Hours:
     Out("Nothing")
 Return
+
+
+Conversion_ActiveJob_toTender:
+LastDailyLog:=new File(Push_TemplateToFile(A_ScriptDir . "\templates\WorkTenderPDF.xlsx",A_ScriptDir . "\Conversions\Tenders\Work Tender (" . ActiveJobFile.FileName . ").xlsx"))
+if(!LastDailyLog){
+Out("Conversion Failed")
+}else{
+    Out("Creating Tender...")
+ Excel_NewTender:=new WorkbookWrapper(LastDailyLog.FullPath,1)
+
+ Excel_SetCell(Excel_NewTender,"C2",ListManager.GetData("Signature","---"),1)
+  Excel_SetCell(Excel_NewTender,"H2",ActiveJob.SerializableData.JobNumber,1)
+  Excel_SetCell(Excel_NewTender,"C3",ActiveJob.SerializableData.JobOwner,1)
+  Excel_SetCell(Excel_NewTender,"H3",ActiveJob.SerializableData.OwnerContact,1)
+FormatTime, VD , % ActiveJob.SerializableData.Date.DateString(), M/d/yyyy
+  Excel_SetCell(Excel_NewTender,"C4",VD,1)
+  Excel_SetCell(Excel_NewTender,"H4",ActiveJob.SerializableData.OwnerPhone,1)
+    Excel_SetCell(Excel_NewTender,"C5",ActiveJob.SerializableData.GeneralContractor,1)
+  Excel_SetCell(Excel_NewTender,"H5",ActiveJob.SerializableData.Subcontractor,1)
+ Excel_NewTender.SaveAndClose()
+ Out("Conversion Complete - " . A_ScriptDir . "\Conversions\Tenders\Work Tender (" . ActiveJobFile.FileName . ").xlsx")
+}
+return
+
+
 Conversion_ActiveJob_toDailyLog:
 if(ActiveJob){
     Out("Converting to daily log...")

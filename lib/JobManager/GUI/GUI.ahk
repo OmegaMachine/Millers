@@ -60,7 +60,13 @@ Gui,1: Add, Button,% "w" . "120" . " h" . "20" . " x" . AppResolution.Width-140 
 ;Tab 2
 Gui,1: Tab, 2
 Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Full . " x" . "m" . " y" . 25 . " vGroupBox_DailyLogging ",Daily Logging
-
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Third . " h" . AppResolution.Heights.Sixteenth . " xp+" . 5 . " yp+" . 25 . " vGroupBox_LoadLog ",Load Day
+VX:=AppResolution.Widths.Third + 100
+Gui,1: Add, GroupBox,% "w" . VX . " h" . AppResolution.Heights.Sixteenth . " xp+" . AppResolution.Widths.Third+5 . " yp" . " vGroupBox_NewLog ",New Day
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 200 . " x20" . " y" . "p+20" . " vDailyLogging_Days +Center gGuiDailyLoggingLoadDay",
+VX:=AppResolution.Widths.Third + 25
+Gui,1: Add, DateTime,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 20 . " x" . VX . " y" . "p" . " vDailyLogging_Cal +Center ",LongDate
+Gui,1: Add, Button,% "w90" . " h20" . " x+5" . " y" . "p" . " vDailyLogging_NewButton +Center gGuiDailyLoggingNewDay",New Day
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
 
 

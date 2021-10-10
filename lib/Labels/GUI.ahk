@@ -95,6 +95,17 @@ GuiGeneralModify:
    }
 return
 
+GuiDailyLoggingLoadDay:
+
+Return
+
+GuiDailyLoggingNewDay:
+Gui,1:Submit,NoHide
+FormatTime, DailyLogging_CalModified , %DailyLogging_Cal%, M/d/yyyy
+if(Add_DailyLog(DailyLogging_CalModified)){
+InfoMessage("New daily log has been added.")
+}
+Return
 
 Load_JobDetailsFromJob:
 UnsavedChanges()

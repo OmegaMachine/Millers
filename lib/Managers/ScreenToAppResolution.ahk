@@ -21,6 +21,7 @@
         this.Widths.Quarter := Floor((this.Width / 4))
         this.Widths.QuarterMinusPadding := Floor((this.Width / 4)) - this.Padding
         this.Widths.Third := Floor((this.Width / 3))
+         this.Widths.ThirdMinusPadding := Floor((this.Width / 3)) - this.Padding
         this.Widths.Half := Floor((this.Width / 2))
 
         this.Heights:={}

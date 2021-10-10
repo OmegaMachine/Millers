@@ -50,6 +50,8 @@ Menu, ConversionMenu, Add, Create Weekly Payroll, Conversion_ActiveJob_toPayroll
 Menu, ConversionMenu, Icon, Create Weekly Payroll,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 Menu, ConversionMenu, Add, Create Work Summary, Create_WorkSummary
 Menu, ConversionMenu, Icon, Create Work Summary,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, ConversionMenu, Add, Export Tender, Conversion_ActiveJob_toTender
+Menu, ConversionMenu, Icon, Export Tender,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 ;Menu, ErrorCheckMenu, Add, Flush Active Job, DebugMenu_Flush_Active_Job
 ;Menu, ErrorCheckMenu, Icon, Flush Active Job,% IconManager.DLLPath,% IconManager.IconIDByName("CFORM")
 Menu, SettingsMenu,Add,Autoload Most Recent File,ToggleAutoSave

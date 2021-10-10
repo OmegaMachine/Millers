@@ -1,7 +1,7 @@
 ﻿
 
 class Job extends SerializableClass{
-    __New(_Load:=0,_JobNumber:="",_JobOwner:="",_Roads:="",_Weather:="",_Times:="",_ActiveEmployees:="",_ActiveEquipment:="",_Date:="",_ContractWork:=""){ ;_Roads:An array of roads
+    __New(_Load:=0,_JobNumber:="",_JobOwner:="",_Roads:="",_Weather:="",_Times:="",_ActiveEmployees:="",_ActiveEquipment:="",_Date:="",_ContractWork:="",_DailyLogging:=""){ ;_Roads:An array of roads
         ;We must initiate the base class manually
         base.__New()
         if(isObject(_Load)){
@@ -72,6 +72,12 @@ class Job extends SerializableClass{
                 this.SerializableData.ContractWork:=_ContractWork
             }
 
+            if(!isObject(_DailyLogging)){
+                this.SerializableData.DailyLogs:=[]
+            }else{
+                this.SerializableData.DailyLogs:=_DailyLogging
+            }
+
             if(!isObject(_Weather)){
                 this.SerializableData.Weather:={}
                 this.SerializableData.Weather.Morning:=new WeatherState(0,1,"SUNNY")
@@ -114,4 +120,21 @@ class Job extends SerializableClass{
         Out("Save Job Complete")
         return 1
     }
+
+    DailyLogsList(){
+        NewList:=0
+             for index,DayX in this.SerializableData.DailyLogs
+        {
+            if(!NewList){
+                NewList:=DayX.Date
+            }else{
+                 NewList:=NewList . "|" . DayX.Date
+            }
+        }
+        if(!NewList){
+            NewList:="<No Daily Logs>"
+        }
+        return NewList
+}
+
 }
