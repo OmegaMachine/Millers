@@ -320,7 +320,7 @@ Add_DailyLog(__Day){
      for index,DayX in ActiveJob.SerializableData.DailyLogs
         {
             if(DayX.Date = __Day){
-                NonFatalErrorPrompt("Operation Aborted. Work Date Invalid.")
+                NonFatalErrorPrompt("Operation Aborted. Work Date Already Exists in Job.")
                 Out("Work Date already Exists")
                 return 0
             }

@@ -49,6 +49,7 @@
         this.Positions.2ndThirdPlusPadding := Floor((this.Heights.Third * 1)) + ( this.Padding * 4 )
         this.Positions.2ndThirdPlusPadding2 := Floor((this.Heights.Third * 1)) + ( this.Padding * 6 )
         this.Positions.3rdThirdPlusPadding2 := Floor((this.Heights.Third * 2)) + ( this.Padding * 8 )
+        this.Positions.3rdThird := Floor((this.Heights.Third * 2))
 
         return this
     }

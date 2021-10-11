@@ -1,7 +1,16 @@
-﻿Gui,1: Menu, MainMenu
+﻿BackgroundColor:="0xB0C7CA" ;gray
+BackgroundColor:="0xF2707F" ;contrast red
+BackgroundColor:="0xD6AC38" ;Gold
+BackgroundColor:="0xFFFDD0" ;Cream
+BackgroundColor:="0x6b3a23" ;Brown
+BackgroundColor:="0x623f2a" ;Brown2
+BackgroundColor:="0xa88464" ;Light Brown
+BackgroundColor:="0xac998c" ;Gray Brown
+
+Gui,1: Menu, MainMenu
 Gui,1: +Resize +MinSize +LastFound
 MAIN_WINDOW:=WinExist()
-
+Gui,1: Color, %BackgroundColor%
 Gui,1: Add,StatusBar,,% "Welcome! v" . VersionManager.Current() . " loaded!"
 ;Gui,1: Color, 4E4848
 Gui,1: Add, Text,% "w" . AppResolution.Width . " h" . 100 . " x" . 0 . " y" . 0 . " vWelcome_Text +ReadOnly",%WelcomeText%
@@ -50,23 +59,29 @@ Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" .
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s" . " y" . "p+45" . " vJobWeather_HumidityText +ReadOnly +Center",Humidity(`%)
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vJobWeather_HumidityDDL +Center gGuiGeneralModify +Number",50
 ;Groupbox 3
-Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Third*2-100 . " x" . "m" . " y" . AppResolution.Positions.2ndThirdPlusPadding . " vGroupBox_JobWork ",Contract Work
-Gui,1: Add, ListView,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding . " x" . "m+10" . " y" . AppResolution.Positions.2ndThirdPlusPadding2 . " vGroupBox_JobWorkLV ",Work Name|Work Type|Has Seal Coat?|Length (m)|Width (m)|Area (m2)|Notes
-Gui,1: Add, Edit,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding2 . " x" . "m+10" . " y" . AppResolution.Positions.3rdThirdPlusPadding2 . " vContract_JobWorkNotes gGuiGeneralModify",
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Third*2-65 . " x" . "m" . " y" . AppResolution.Positions.2ndThirdPlusPadding . " vGroupBox_JobWork ",Contract Work
+Gui,1: Add, ListView,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding+50 . " x" . "m+10" . " y" . AppResolution.Positions.2ndThirdPlusPadding2 . " vGroupBox_JobWorkLV ",Work Name|Work Type|Has Seal Coat?|Length (m)|Width (m)|Area (m2)|Notes
+Gui,1: Add, Edit,% "w" . AppResolution.Widths.FullMinusPadding . " h" . AppResolution.Heights.ThirdMinusPadding2 . " x" . "m+10" . " y+5" . " vContract_JobWorkNotes gGuiGeneralModify",
 
 ;Tab 1 - Bottom Button Bar
 Gui,1: Add, Button,% "w" . "120" . " h" . "20" . " x" . AppResolution.Width-140 . " y" . AppResolution.Height-50 . " vButton_PrintContractSummary gCreate_WorkSummary",Create Work Summary
 
 ;Tab 2
 Gui,1: Tab, 2
+
 Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.Heights.Full . " x" . "m" . " y" . 25 . " vGroupBox_DailyLogging ",Daily Logging
-Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Third . " h" . AppResolution.Heights.Sixteenth . " xp+" . 5 . " yp+" . 25 . " vGroupBox_LoadLog ",Load Day
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Third+100 . " h" . AppResolution.Heights.Sixteenth . " xp+" . 5 . " yp+" . 25 . " vGroupBox_LoadLog ",Load Day
 VX:=AppResolution.Widths.Third + 100
-Gui,1: Add, GroupBox,% "w" . VX . " h" . AppResolution.Heights.Sixteenth . " xp+" . AppResolution.Widths.Third+5 . " yp" . " vGroupBox_NewLog ",New Day
+Gui,1: Add, GroupBox,% "w" . VX . " h" . AppResolution.Heights.Sixteenth . " xp+" . AppResolution.Widths.Third+105 . " yp" . " vGroupBox_NewLog ",New Day
 Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 200 . " x20" . " y" . "p+20" . " vDailyLogging_Days +Center gGuiDailyLoggingLoadDay",
-VX:=AppResolution.Widths.Third + 25
+VX:=AppResolution.Widths.Third + 125
+Gui,1: Add, Button,% "w90" . " h20" . " x+5" . " y" . "p" . " vDailyLogging_LoadButton +Center gGuiDailyLoggingLoadDay",Load
 Gui,1: Add, DateTime,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 20 . " x" . VX . " y" . "p" . " vDailyLogging_Cal +Center ",LongDate
 Gui,1: Add, Button,% "w90" . " h20" . " x+5" . " y" . "p" . " vDailyLogging_NewButton +Center gGuiDailyLoggingNewDay",New Day
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full-10 . " h" . AppResolution.Heights.Full-80 . " xm+5" . " yp+30 vGroupBox_DailyLog",Daily Log
+Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " xp" . "+5" . " y" . "p+15" . " vDailyLog_Date +Center +ReadOnly +BackgroundTrans" . BackgroundColor,<No Day Loaded>
+Gui,1: Add, Edit,% "w" . AppResolution.Widths.Full-195 . " h" . 20 . " x" . "+5" . " y" . "p" . " vDailyLog_Title +Center +ReadOnly +BackgroundTrans" . BackgroundColor,<No Day Loaded>
+
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
 
 

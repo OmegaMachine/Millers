@@ -31,7 +31,7 @@ AutoLoad(AutoLoadFile)
 }
 return ; End of autoload section
 Home::
-Show_AddWork()
+WinSet Top,, ahk_id %GroupBox_DailyLogging%
 return
 ;This Include organizes the main GUI's labels (Close,Size etc.)
 #Include lib\Labels\GUI.ahk

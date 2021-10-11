@@ -33,7 +33,10 @@ GuiSize:
     Anchor("Main_TAB", "hw")
         ;Tab 1
     ;Groupbox 1
-    Anchor("GroupBox_JobDetails","w0.25h0.3")
+    /*
+
+
+    ;Anchor("GroupBox_JobDetails","w0.25h0.3")
     Anchor("JobDetails_JobNumberText","x0.05")
     Anchor("JobDetails_JobNumberDDL","w0.125x0.1")
     Anchor("JobDetails_JobOwnerText","x0.05")
@@ -70,16 +73,20 @@ GuiSize:
     Anchor("JobWeather_HumidityDDL","w0.125x0.3")
 
     Anchor("CopyDetailsButton","x0.25y0.3")
+    */
     ;Groupbox 3
-     Anchor("GroupBox_JobWork","wy0.3h0.3")
-     Anchor("GroupBox_JobWorkLV","wy0.3h0.3")
-     Anchor("Contract_JobWorkNotes","wy0.3h0.3")
+     Anchor("GroupBox_JobWork","w1h1")
+     Anchor("GroupBox_JobWorkLV","w1")
+     Anchor("Contract_JobWorkNotes","w1h1")
      
      ;Tab 1 - Bottom Button Bar
      Anchor("Button_PrintContractSummary","xy")
         ;Tab 2
     ;Groupbox 1 (Add)
     Anchor("GroupBox_DailyLogging","w1h1")
+    Anchor("GroupBox_DailyLog","w1h1")
+    Anchor("DailyLog_Title","w1")
+    
     CurrHeight:=A_GuiHeight
     CurrWidth:=A_GUIWidth
 return

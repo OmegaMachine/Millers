@@ -1,3 +1,4 @@
 "Job Manager" - Surface Treatment
 
 -Current Tender export template only supports 10 road items. following https://www.autohotkey.com/board/topic/98067-ahk-and-excel-copy-a-sheet-delete-a-sheet/ i should be able to duplicate the sheet and create support for unlimited
+-Add Duplicate Contract work context menu (opens New Road menu with pre-filled info from selected road)
