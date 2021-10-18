@@ -1,6 +1,7 @@
 [Data]
 Signature=Robert MacMaster
 Autoload=1
+AutoloadDailyLogDropdown=1
 LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\Oct11.JOB
 [Lists]
 YesNo=["Yes","No"]
@@ -16,6 +17,7 @@ Job_Owners=["Mississippi Mills","Lanark","North Stormont","South Stormont","Sout
 Employees=[111111,123123]
 GeneralContractors=["Smith's - PPG","Cavanagh"]
 SubContractors=["N/A","Cavanagh"]
+Vessals=["1701","1702","1703","Tanker - Kirk","Tanker - Donald","Gary"]
 
 [111111]
 FirstName=Robert
