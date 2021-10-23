@@ -20,26 +20,25 @@ INTERNAL_LOADING:=true
 #Include lib\JobManager\GUI\Gui_Menu.ahk 
 ;This Include organizes the main GUI's creation
 #Include lib\JobManager\GUI\Gui.ahk
-AutoLoadEnabled:=ListManager.GetData("Autoload",false)
-if(AutoLoadEnabled){
-    AutoLoadFile:=ListManager.GetData("LastFile","false")
-    if(AutoLoadFile){
-AutoLoad(AutoLoadFile)
-    }else{
-        Out("Most recent file could not be found.")
-    }
-}
-return ; End of autoload section
+
+;This determines if the program should automatically load a job file when initiating
+#Include lib\Functionality\Autoload.ahk
+
+return ; End of autoload section (Also returns in Autoload)
 Home::
 WinSet Top,, ahk_id %GroupBox_DailyLogging%
 return
 ;This Include organizes the main GUI's labels (Close,Size etc.)
 #Include lib\Labels\GUI.ahk
-;This Include organizes the main GUI's menu labels
+;This Include organizes the main GUI's menu labels and other program functionality
 #Include lib\Labels\GUI_Menu.ahk
-#Include lib\JobManager\GUI\AddWork.ahk
-#Include lib\JobManager\GUI\RemoveWork.ahk
-#Include lib\JobManager\GUI\EditWork.ahk
+#Include lib\Functionality\AddWork.ahk
+#Include lib\Functionality\RemoveWork.ahk
+#Include lib\Functionality\EditWork.ahk
+#Include lib\Functionality\NewBlankJob.ahk
+#Include lib\Functionality\SavingJob.ahk
+#Include lib\Functionality\LoadingJob.ahk
+#Include lib\Functionality\AddDailyLog.ahk
 ;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk
 ;This include adds debug functions

@@ -61,6 +61,13 @@ Menu, SettingsMenu,Check,Autoload Most Recent File
 Menu, SettingsMenu,uncheck,Autoload Most Recent File
 }
 
+Menu, SettingsMenu,Add,Autoload Dailylog on Select,ToggleAutoloadDailylog
+if(ListManager.GetData("AutoloadDailyLogDropdown",false)){
+Menu, SettingsMenu,Check,Autoload Dailylog on Select
+}else{
+Menu, SettingsMenu,uncheck,Autoload Dailylog on Select
+}
+
 Menu, MainMenu, Add, &File, :FileMenu
 Menu, MainMenu, Add, &Contract, :ContractMenu
 Menu, MainMenu, Add, &Import, :ImportMenu

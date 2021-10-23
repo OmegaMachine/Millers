@@ -104,3 +104,53 @@ SetFormat, float,0.2
 __NewArea:=_EditWork_Length*_EditWork_Width
 GuiControl,,_EditWork_Area,%__NewArea%
 return
+
+
+Edit_ContractWork(Original_Work_Name,Work_name,Work_Type,Work_HasFog,Work_Length,Work_Width,Work_Area,Work_Notes,ProductDetailsObj){
+    global
+    if(!Original_Work_Name){
+         NonFatalErrorPrompt("Operation Aborted. File Name Invalid.")
+        Out("Invalid Work Name")
+        return 0
+    }
+     for index,WorkX in ActiveJob.SerializableData.ContractWork
+        {
+            if(WorkX.Name = Original_Work_Name){
+    NewWork:={}
+    NewWork.Name:=Work_Name
+    NewWork.Type:=Work_Type
+    NewWork.HasFog:=Work_HasFog
+    NewWork.Length:=Work_Length
+    NewWork.Width:=Work_Width
+    NewWork.Area:=Work_Area
+    NewWork.Notes:=Work_Notes
+        NewWork.BottomEmulsionType:=ProductDetailsObj.Bottom.Emulsion.Type
+    NewWork.BottomEmulsionRate:=ProductDetailsObj.Bottom.Emulsion.Rate
+    NewWork.BottomEmulsionSource:=ProductDetailsObj.Bottom.Emulsion.Source
+
+    NewWork.TopEmulsionType:=ProductDetailsObj.Top.Emulsion.Type
+    NewWork.TopEmulsionRate:=ProductDetailsObj.Top.Emulsion.Rate
+    NewWork.TopEmulsionSource:=ProductDetailsObj.Top.Emulsion.Source
+
+    NewWork.SealCoatEmulsionType:=ProductDetailsObj.SealCoat.Emulsion.Type
+    NewWork.SealCoatEmulsionRate:=ProductDetailsObj.SealCoat.Emulsion.Rate
+    NewWork.SealCoatEmulsionSource:=ProductDetailsObj.SealCoat.Emulsion.Source
+
+    NewWork.BottomAggType:=ProductDetailsObj.Bottom.Aggregate.Type
+    NewWork.BottomAggRate:=ProductDetailsObj.Bottom.Aggregate.Rate
+    NewWork.BottomAggSource:=ProductDetailsObj.Bottom.Aggregate.Source
+
+    NewWork.TopAggType:=ProductDetailsObj.Top.Aggregate.Type
+    NewWork.TopAggRate:=ProductDetailsObj.Top.Aggregate.Rate
+    NewWork.TopAggSource:=ProductDetailsObj.Top.Aggregate.Source
+
+    NewWork.SealCoatAggType:=ProductDetailsObj.SealCoat.Aggregate.Type
+    NewWork.SealCoatAggRate:=ProductDetailsObj.SealCoat.Aggregate.Rate
+    NewWork.SealCoatAggSource:=ProductDetailsObj.SealCoat.Aggregate.Source
+    ActiveJob.SerializableData.ContractWork[index] := NewWork
+            }
+        }
+Push_ActiveJob(ActiveJob)
+UnsavedChanges(true)
+    return 1
+}

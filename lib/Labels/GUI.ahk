@@ -101,8 +101,20 @@ GuiGeneralModify:
        }
    }
 return
-
+GuiDailyLoggingLoadDayAuto:
+if(ListManager.GetData("AutoloadDailyLogDropdown",false)){
+    Goto,GuiDailyLoggingLoadDay
+}
+Return
 GuiDailyLoggingLoadDay:
+Gui,1:Submit,NoHide
+ for index,DayX in ActiveJob.SerializableData.DailyLogs
+        {
+            if(DayX.Date = DailyLogging_Days){
+GuiControl,,DailyLog_Date,% DayX.Date
+GuiControl,,DailyLog_Title,% ActiveJob.SerializableData.JobNumber . " - " . ActiveJob.SerializableData.JobOwner
+            }
+        }
 
 Return
 

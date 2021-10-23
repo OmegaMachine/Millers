@@ -26,7 +26,7 @@ Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" .
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "m+5" . " y" . "p+25" . " vJobDetails_JobOwnerText +ReadOnly +Center",Job Owner
 Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vJobDetails_JobOwnerDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Job_Owners"),"Mississippi Mills")
 
-Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "m+5" . " y" . "p+25" . " vJobDetails_JobDateText +ReadOnly +Center",Work Date
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "m+5" . " y" . "p+25" . " vJobDetails_JobDateText +ReadOnly +Center",Tentative Work Date
 Gui,1: Add, DateTime,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vJobDetails_JobDateTime +Center gGuiGeneralModify", LongDate
 
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "m+5" . " y" . "p+25" . " vJobDetails_JobContactNameText +ReadOnly +Center",Contact name
@@ -73,7 +73,7 @@ Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full . " h" . AppResolution.He
 Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Third+100 . " h" . AppResolution.Heights.Sixteenth . " xp+" . 5 . " yp+" . 25 . " vGroupBox_LoadLog ",Load Day
 VX:=AppResolution.Widths.Third + 100
 Gui,1: Add, GroupBox,% "w" . VX . " h" . AppResolution.Heights.Sixteenth . " xp+" . AppResolution.Widths.Third+105 . " yp" . " vGroupBox_NewLog ",New Day
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 200 . " x20" . " y" . "p+20" . " vDailyLogging_Days +Center gGuiDailyLoggingLoadDay",
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 200 . " x20" . " y" . "p+20" . " vDailyLogging_Days +Center gGuiDailyLoggingLoadDayAuto",
 VX:=AppResolution.Widths.Third + 125
 Gui,1: Add, Button,% "w90" . " h20" . " x+5" . " y" . "p" . " vDailyLogging_LoadButton +Center gGuiDailyLoggingLoadDay",Load
 Gui,1: Add, DateTime,% "w" . AppResolution.Widths.ThirdMinusPadding . " h" . 20 . " x" . VX . " y" . "p" . " vDailyLogging_Cal +Center ",LongDate
@@ -81,6 +81,25 @@ Gui,1: Add, Button,% "w90" . " h20" . " x+5" . " y" . "p" . " vDailyLogging_NewB
 Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full-10 . " h" . AppResolution.Heights.Full-80 . " xm+5" . " yp+30 vGroupBox_DailyLog",Daily Log
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " xp" . "+5" . " y" . "p+15" . " vDailyLog_Date +Center +ReadOnly +BackgroundTrans" . BackgroundColor,<No Day Loaded>
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.Full-195 . " h" . 20 . " x" . "+5" . " y" . "p" . " vDailyLog_Title +Center +ReadOnly +BackgroundTrans" . BackgroundColor,<No Day Loaded>
+;Groupbox Weather
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Quarter . " h" . AppResolution.Heights.Quarter . " xm+10" . " y+" . 10 . " vGroupBox_DailyLogWeather Section",Weather
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "p+1" . " yp+" . "15" . "  vDailyLog_MorningText +ReadOnly +Center",Morning Status
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "s+10" . " vDailyLog_MorningDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_MorningTempText +ReadOnly +Center",Morning Temp
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_MorningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_LunchText +ReadOnly +Center",Lunch Status
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_LunchDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_LunchTempText +ReadOnly +Center",Lunch Temp
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_LunchTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_EveningText +ReadOnly +Center",Evening Status
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_EveningDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_EveningTempText +ReadOnly +Center",Evening Temp
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_EveningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+30" . " vDailyLog_HumidityText +ReadOnly +Center",Humidity (`%)
+Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vDailyLog_HumidityDDL +Center gGuiGeneralModify +Number +Limit2 +Number ",50
+
+;Groupbox Emulsion
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Quarter . " h" . AppResolution.Heights.Quarter . " x" . AppResolution.Positions.2ndQuarterPlusPadding+5 . " ys" . " vGroupBox_DailyLogEmulsion ",Vessals && Emulsions
 
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
 

@@ -46,15 +46,6 @@ isValidJobFile(_JobPath){
     return _Valid
 }
 
-LoadJob(_JobFile){
-    global
-    Out("Load Job Success. <" . _JobFile.FileNameNoExt . ">")
-    Remove_Welcome()
-    SetTitle(APP_NAME . " - " . _JobFile.FileNameNoExt)
-    Push_ActiveJob(ActiveJob)
-    ListManager.SetData("LastFile",_JobFile.FullPath)
-    return 1
-}
 
 UnsavedChanges(_State:=true){
     global
@@ -68,12 +59,7 @@ UnsavedChanges(_State:=true){
     return 1
 }
 
-Create_BlankJobFile(_Dir,_Name){
-    NewJob:=new Job(0,"555555","Mississippi Mills",0)
-    FileAppend,% NewJob.toJson(),%_Dir%\%_Name%
-    ;msgbox,% NewJob.toJson()
-    return 1
-}
+
 
 CheckDirectory(_Dir){
     ifNotExist,%_Dir%
@@ -152,7 +138,7 @@ GLOBAL_CONTRACTWORKLIST:=ListManager.ListToDelimited(GLOBAL_CONTRACTWORKLIST,_De
     ;ActiveJob.SerializableData.Weather.Morning.SerializableData.Status
 
     Gui,12:Default
-    GuiControl,,_RemoveWork_Name,%GLOBAL_CONTRACTWORKLIST%
+    GuiControl,,_RemoveWork_Name,|%GLOBAL_CONTRACTWORKLIST%
     return 1
 }
 
@@ -186,153 +172,13 @@ FileSetTime, ,% ExcelObject.DocumentPath
 return 1
 }
 
-Add_ContractWork(Work_name,Work_Type,Work_HasFog,Work_Length,Work_Width,Work_Area,Work_Notes,ProductDetailsObj){
-    global
-    if(!Work_Name){
-         NonFatalErrorPrompt("Operation Aborted. File Name Invalid.")
-        Out("Invalid Work Name")
-        return 0
-    }
-     for index,WorkX in ActiveJob.SerializableData.ContractWork
-        {
-            if(WorkX.Name = Work_Name){
-                NonFatalErrorPrompt("Operation Aborted. File Name Invalid.")
-                Out("Work Name already Exists")
-                return 0
-            }
-        }
-    NewWork:={}
-    NewWork.Name:=Work_Name
-    NewWork.Type:=Work_Type
-    NewWork.HasFog:=Work_HasFog
-    NewWork.Length:=Work_Length
-    NewWork.Width:=Work_Width
-    NewWork.Area:=Work_Area
-    NewWork.Notes:=Work_Notes
-   
-    NewWork.BottomEmulsionType:=ProductDetailsObj.Bottom.Emulsion.Type
-    NewWork.BottomEmulsionRate:=ProductDetailsObj.Bottom.Emulsion.Rate
-    NewWork.BottomEmulsionSource:=ProductDetailsObj.Bottom.Emulsion.Source
-
-    NewWork.TopEmulsionType:=ProductDetailsObj.Top.Emulsion.Type
-    NewWork.TopEmulsionRate:=ProductDetailsObj.Top.Emulsion.Rate
-    NewWork.TopEmulsionSource:=ProductDetailsObj.Top.Emulsion.Source
-
-    NewWork.SealCoatEmulsionType:=ProductDetailsObj.SealCoat.Emulsion.Type
-    NewWork.SealCoatEmulsionRate:=ProductDetailsObj.SealCoat.Emulsion.Rate
-    NewWork.SealCoatEmulsionSource:=ProductDetailsObj.SealCoat.Emulsion.Source
-
-    NewWork.BottomAggType:=ProductDetailsObj.Bottom.Aggregate.Type
-    NewWork.BottomAggRate:=ProductDetailsObj.Bottom.Aggregate.Rate
-    NewWork.BottomAggSource:=ProductDetailsObj.Bottom.Aggregate.Source
-
-    NewWork.TopAggType:=ProductDetailsObj.Top.Aggregate.Type
-    NewWork.TopAggRate:=ProductDetailsObj.Top.Aggregate.Rate
-    NewWork.TopAggSource:=ProductDetailsObj.Top.Aggregate.Source
-
-    NewWork.SealCoatAggType:=ProductDetailsObj.SealCoat.Aggregate.Type
-    NewWork.SealCoatAggRate:=ProductDetailsObj.SealCoat.Aggregate.Rate
-    NewWork.SealCoatAggSource:=ProductDetailsObj.SealCoat.Aggregate.Source
-
-ActiveJob.SerializableData.ContractWork.Push(NewWork)
-Push_ActiveJob(ActiveJob)
-UnsavedChanges(true)
-    return 1
-}
-Remove_ContractWork(Work_name){
-    global
-    NewList:=[]
-     for index,WorkX in ActiveJob.SerializableData.ContractWork
-        {
-            if(WorkX.Name = Work_Name){
-               Continue
-            }else{
-                NewList.Push(WorkX)
-            }
-        }
-        ActiveJob.SerializableData.ContractWork:=NewList
-        Push_ActiveJob(ActiveJob)
-        UnsavedChanges(true)
-    return 1
-}
 
 
 
 
 
-Edit_ContractWork(Original_Work_Name,Work_name,Work_Type,Work_HasFog,Work_Length,Work_Width,Work_Area,Work_Notes,ProductDetailsObj){
-    global
-    if(!Original_Work_Name){
-         NonFatalErrorPrompt("Operation Aborted. File Name Invalid.")
-        Out("Invalid Work Name")
-        return 0
-    }
-     for index,WorkX in ActiveJob.SerializableData.ContractWork
-        {
-            if(WorkX.Name = Original_Work_Name){
-    NewWork:={}
-    NewWork.Name:=Work_Name
-    NewWork.Type:=Work_Type
-    NewWork.HasFog:=Work_HasFog
-    NewWork.Length:=Work_Length
-    NewWork.Width:=Work_Width
-    NewWork.Area:=Work_Area
-    NewWork.Notes:=Work_Notes
-        NewWork.BottomEmulsionType:=ProductDetailsObj.Bottom.Emulsion.Type
-    NewWork.BottomEmulsionRate:=ProductDetailsObj.Bottom.Emulsion.Rate
-    NewWork.BottomEmulsionSource:=ProductDetailsObj.Bottom.Emulsion.Source
-
-    NewWork.TopEmulsionType:=ProductDetailsObj.Top.Emulsion.Type
-    NewWork.TopEmulsionRate:=ProductDetailsObj.Top.Emulsion.Rate
-    NewWork.TopEmulsionSource:=ProductDetailsObj.Top.Emulsion.Source
-
-    NewWork.SealCoatEmulsionType:=ProductDetailsObj.SealCoat.Emulsion.Type
-    NewWork.SealCoatEmulsionRate:=ProductDetailsObj.SealCoat.Emulsion.Rate
-    NewWork.SealCoatEmulsionSource:=ProductDetailsObj.SealCoat.Emulsion.Source
-
-    NewWork.BottomAggType:=ProductDetailsObj.Bottom.Aggregate.Type
-    NewWork.BottomAggRate:=ProductDetailsObj.Bottom.Aggregate.Rate
-    NewWork.BottomAggSource:=ProductDetailsObj.Bottom.Aggregate.Source
-
-    NewWork.TopAggType:=ProductDetailsObj.Top.Aggregate.Type
-    NewWork.TopAggRate:=ProductDetailsObj.Top.Aggregate.Rate
-    NewWork.TopAggSource:=ProductDetailsObj.Top.Aggregate.Source
-
-    NewWork.SealCoatAggType:=ProductDetailsObj.SealCoat.Aggregate.Type
-    NewWork.SealCoatAggRate:=ProductDetailsObj.SealCoat.Aggregate.Rate
-    NewWork.SealCoatAggSource:=ProductDetailsObj.SealCoat.Aggregate.Source
-    ActiveJob.SerializableData.ContractWork[index] := NewWork
-            }
-        }
-Push_ActiveJob(ActiveJob)
-UnsavedChanges(true)
-    return 1
-}
 
 
-Add_DailyLog(__Day){
-    global
-    if(!__Day){
-         NonFatalErrorPrompt("Operation Aborted. Date is Invalid.")
-        Out("Invalid Date")
-        return 0
-    }
-     for index,DayX in ActiveJob.SerializableData.DailyLogs
-        {
-            if(DayX.Date = __Day){
-                NonFatalErrorPrompt("Operation Aborted. Work Date Already Exists in Job.")
-                Out("Work Date already Exists")
-                return 0
-            }
-        }
-        NewDailyLog:={}
-        NewDailyLog.Date:=__Day
 
-        NewDailyLog.Vessals:=[]
-        
 
-        ActiveJob.SerializableData.DailyLogs.Push(NewDailyLog)
-        Push_ActiveJob(ActiveJob)
-UnsavedChanges(true)
-    return 1
-}
+
