@@ -1,4 +1,7 @@
-﻿Menu, FileMenu, Add, Load Job, FileMenu_LoadJob
+﻿Menu, Tray, NoStandard
+Menu, Tray, Add, Exit, GuiClose
+
+Menu, FileMenu, Add, Load Job, FileMenu_LoadJob
 Menu, FileMenu, Icon, Load Job,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, FileMenu, Add, Save Job, FileMenu_SaveJob
 Menu, FileMenu, Icon, Save Job,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
@@ -6,6 +9,8 @@ Menu, FileMenu, Add, Save Job As, FileMenu_SaveJobAs
 Menu, FileMenu, Icon, Save Job As,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 Menu, FileMenu, Add, New Blank Job, FileMenu_New_Blank_Job
 Menu, FileMenu, Icon, New Blank Job,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
+Menu, FileMenu, Add, Exit, GuiClose
+Menu, FileMenu, Icon, Exit,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
 
 Menu, DebugMenu, Add, Test, DebugMenu_Test1
 Menu, DebugMenu, Icon, Test,% IconManager.DLLPath,% IconManager.IconIDByName("Project")
