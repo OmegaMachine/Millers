@@ -32,6 +32,8 @@ class Job extends SerializableClass{
             this.SerializableData.Emulsion_Additives:="No"
             this.SerializableData.Emulsion_Specifications:="None"
 
+            this.SerializableData.Vessels:=[]
+
             this.SerializableData.Aggregate_Bottom_Type:="Class 2"
             this.SerializableData.Aggregate_Top_Type:="Class 6"
             this.SerializableData.Aggregate_Fog_Type:="SAND"

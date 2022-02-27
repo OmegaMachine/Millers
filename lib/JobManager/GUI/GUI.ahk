@@ -246,3 +246,19 @@ Gui,13: Add, Text, x842 y89 w60 h20 , Target Rate
 Gui,13: Add, Edit, x842 y109 w60 h20 v_EditWork_SealCoatAgg_Rate, 2
 Gui,13: Add, Text, x842 y129 w60 h20 , Source
 Gui,13: Add, DropDownList, x842 y149 w60 h200 v_EditWork_SealCoatAgg_Source,% ListManager.ListToDelimited(ListManager.ListByName("Aggregate_Sources"),1)
+
+;Add job Number
+Gui,16: +Owner1
+Gui,16: Add, GroupBox, x2 y0 w290 h170 , Job Numbers
+Gui,16: Add, ListBox, x12 y19 w180 h130 vJobNumber_LB gLB_SelectJobNumber,% ListManager.ListToDelimited(ListManager.ListByName("Job_Numbers"))
+Gui,16: Add, Edit, x12 y149 w100 h20 v_NewJobNumber,
+Gui,16: Add, Button, x112 y149 w80 h20 gLB_AddJobNumber, Add New
+Gui,16: Add, Button, x202 y39 w80 h20 gLB_DeleteJobNumber, Delete
+Gui,16: Add, Text, x202 y9 w80 h20 +Center vJobNumber_SelectionText, <Select>
+/*
+
+
+Gui,16: Add, Button, x280 y50 w100 h20 gSubmit_RemoveWork, Remove Work
+Gui,16: Add, Text, x22 y29 w90 h20 , Work Name
+Gui,16: Add, DropDownList, x22 y49 w200 h200 v_RemoveWork_Name,
+*/

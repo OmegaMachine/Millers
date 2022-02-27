@@ -39,6 +39,7 @@ return
 #Include lib\Functionality\SavingJob.ahk
 #Include lib\Functionality\LoadingJob.ahk
 #Include lib\Functionality\AddDailyLog.ahk
+#Include lib\Functionality\AddJobNumber.ahk
 ;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk
 ;This include adds debug functions

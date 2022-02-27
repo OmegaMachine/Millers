@@ -43,4 +43,29 @@ SetData(_DataName,_Val){
 Iniwrite,%_Val%, % this.MDATPath, Data, %_DataName%
 return 1
 }
+SetList(_DataName,_Val){
+Iniwrite,%_Val%, % this.MDATPath, Lists, %_DataName%
+return 1
+}
+AddValToList(_ListName,_NewVal){
+CurrentListX:=this.ListByName(_ListName)
+CurrentListX.InsertAt(1, _NewVal)
+
+this.SetList(_ListName,Serializer.Serialize(CurrentListX))
+return 1
+}
+RemoveValFromList(_ListName,_RemoveVal){
+CurrentListX:=this.ListByName(_ListName)
+for index,valx in CurrentListX
+{
+if(valx=_RemoveVal)
+{
+    CurrentListX.RemoveAt(index, 1)
+}
+
+}
+this.SetList(_ListName,Serializer.Serialize(CurrentListX))
+return 1
+}
+
 }

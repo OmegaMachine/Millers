@@ -97,7 +97,8 @@ GuiGeneralModify:
        Gui,1:Submit,NoHide
        if(JobDetails_JobNumberDDL = "<Add New>"){
            GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
-           msgbox,Adding New Job Number **Incomplete
+           Show_AddJobNumber()
+          ; msgbox,Adding New Job Number **Incomplete
        }
    }
 return
