@@ -85,29 +85,88 @@ Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full-10 . " h" . AppResolution
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " xp" . "+5" . " y" . "p+15" . " vDailyLog_Date +Center +ReadOnly +BackgroundTrans" . BackgroundColor,<No Day Loaded>
 Gui,1: Add, Edit,% "w" . AppResolution.Widths.Full-195 . " h" . 20 . " x" . "+5" . " y" . "p" . " vDailyLog_Title +Center +ReadOnly +BackgroundTrans" . BackgroundColor,<No Day Loaded>
 ;Groupbox Weather
-Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Quarter . " h" . AppResolution.Heights.Quarter . " xm+10" . " y+" . 10 . " vGroupBox_DailyLogWeather Section",Weather
-Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "p+1" . " yp+" . "15" . "  vDailyLog_MorningText +ReadOnly +Center",Morning Status
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "s+10" . " vDailyLog_MorningDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
-Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_MorningTempText +ReadOnly +Center",Morning Temp
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_MorningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+Weather_SizeOffset:=75
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Quarter . " h" . AppResolution.Heights.Quarter-Weather_SizeOffset . " xm+10" . " y+" . 10 . " vGroupBox_DailyLogWeather Section",Weather
+Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "p+1" . " yp+" . "15" . "  vDailyLog_MorningText +ReadOnly +Center ",Morning Status
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+5" . " y" . "s+10" . " vDailyLog_MorningDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+1" . " y" . "p" . " vDailyLog_MorningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+;Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_MorningTempText +ReadOnly +Center",Morning Temp
+;Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_MorningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_LunchText +ReadOnly +Center",Lunch Status
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_LunchDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
-Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_LunchTempText +ReadOnly +Center",Lunch Temp
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_LunchTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_LunchDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+1" . " y" . "p" . " vDailyLog_LunchTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_EveningText +ReadOnly +Center",Evening Status
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_EveningDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
-Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+25" . " vDailyLog_EveningTempText +ReadOnly +Center",Evening Temp
-Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_EveningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+5" . " y" . "p" . " vDailyLog_EveningDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Types"),"SUNNY")
+Gui,1: Add, DropDownList,% "w" . AppResolution.Widths.Sixtenth . " h" . 200 . " x" . "+1" . " y" . "p" . " vDailyLog_EveningTempDDL +Center gGuiGeneralModify",% ListManager.ListToDelimited(ListManager.ListByName("Weather_Temperatures"),1)
 Gui,1: Add, Text,% "w" . AppResolution.Widths.TenthMinusPadding . " h" . 20 . " x" . "s+1" . " y" . "p+30" . " vDailyLog_HumidityText +ReadOnly +Center",Humidity (`%)
-Gui,1: Add, Edit,% "w" . AppResolution.Widths.EigthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vDailyLog_HumidityDDL +Center gGuiGeneralModify +Number +Limit2 +Number ",50
+Gui,1: Add, Edit,% "w" . AppResolution.Widths.SixtenthMinusPadding . " h" . 20 . " x" . "+5" . " y" . "p" . " vDailyLog_HumidityDDL +Center gGuiGeneralModify +Number +Limit2 +Number ",50
 
 ;Groupbox Emulsion
-Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Quarter . " h" . AppResolution.Heights.Quarter . " x" . AppResolution.Positions.2ndQuarterPlusPadding+5 . " ys" . " vGroupBox_DailyLogEmulsion ",Vessals && Emulsions
+Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full-25 . " h" . AppResolution.Heights.Quarter+2 . " xm+" . 10 . " ys+" . AppResolution.Heights.Quarter-Weather_SizeOffset . " vGroupBox_DailyLogEmulsion Section",Vessals && Emulsions
+
+;Starting Emulsion
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/5)+5 . " h" . AppResolution.Heights.Quarter-18 . " xs+5 ys+15 +Center",Starting Emulsion
+
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+35",Import...
+
+Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3)+10 . " h200 x+1" . " yp +Center vDailyLog_StartingEmulsion_Vessal",% ListManager.ListToDelimited(ListManager.ListByName("Vessals"),1)
+Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/5)+10 . " h200 x+0" . " yp +Center vDailyLog_StartingEmulsion_Product",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Full/5)-3 . " h80 xs+10 ys+55 vDailyLog_StartingEmulsionsLV GSelectVessal",Vessal|Product|Quantity
+
+Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Full/5)-((AppResolution.Widths.Full/5/3)) . " h18 xs+10 ys+135 +Center +ReadOnly vDailyLog_StartingEmulsion_SelectedVessal",<Select a Vessal>
+
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+155 ",Quantity
+Gui,1: Add, Edit,% "w" . ((AppResolution.Widths.Full/5)/3) . " h20 x+m" . " yp +Center +Number vDailyLog_StartingEmulsion_SelectedVessalProductQuantity",0
+
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6) . " h18 xs+10 y+1",Product
+Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3) . " h200 x+m" . " yp +Center vDailyLog_StartingEmulsion_SelectedVessalProductDDL",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 x+45" . " yp gSavevessal vDailyLog_StartingEmulsion_SelectedVessalSaveButton",Save Vessal
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-35 . " h18 xp+25" . " ys+35 gAddVessal vDailyLog_StartingEmulsion_AddVessalButton",Add...
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 xp-25" . " ys+135 gDeleteVessal vDailyLog_StartingEmulsion_SelectedVessalDeleteButton",Delete Vessal
+
+;Recieved Emulsion
+
+;Ending Emulsion
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/5)+5 . " h" . AppResolution.Heights.Quarter-18 . " x+5 ys+15 +Center Section",Ending Emulsion
+
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+20",Import...
+
+Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3)+10 . " h200 x+1" . " yp +Center vDailyLog_EndingEmulsion_Vessal",% ListManager.ListToDelimited(ListManager.ListByName("Vessals"),1)
+Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/5)+10 . " h200 x+0" . " yp +Center vDailyLog_EndingEmulsion_Product",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Full/5)-3 . " h80 xs+10 ys+40 vDailyLog_EndingEmulsionsLV GSelectVessalEnding",Vessal|Product|Quantity
+
+Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Full/5)-((AppResolution.Widths.Full/5/3)) . " h18 xs+10 ys+120 +Center +ReadOnly vDailyLog_EndingEmulsion_SelectedVessal",<Select a Vessal>
+
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+140 ",Quantity
+Gui,1: Add, Edit,% "w" . ((AppResolution.Widths.Full/5)/3) . " h20 x+m" . " yp +Center +Number vDailyLog_EndingEmulsion_SelectedVessalProductQuantity",0
+
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6) . " h18 xs+10 y+1",Product
+Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3) . " h200 x+m" . " yp +Center vDailyLog_EndingEmulsion_SelectedVessalProductDDL",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 x+45" . " yp gSavevessalEnding vDailyLog_EndingEmulsion_SelectedVessalSaveButton",Save Vessal
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-35 . " h18 xp+25" . " ys+20 gAddVessalEnding vDailyLog_EndingEmulsion_AddVessalButton",Add...
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 xp-25" . " ys+120 gDeleteVessalEnding vDailyLog_EndingEmulsion_SelectedVessalDeleteButton",Delete Vessal
+
+/*
+
+
+WWH:=(AppResolution.Widths.Half/5)
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Half/5) . " h20 xs+" . WWH . " ys+20 +Center",Recieved Emulsion
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Half/10) . " h20 xs+" . WWH+10 . " ys+40",Import
+Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Half/5) . " h80 xs+" . WWH+10 . " ys+60",Product|Quantity
+Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Half/5) . " h18 xs+" . WWH+10 . " ys+142 +Center +ReadOnly -E0x200",Select a Product
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Half/10) . " h20 xs+" . WWH+10 . " ys+160",Quantity
+WW:=(AppResolution.Widths.Half/10)+10
+Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Half/10) . " h20 xs+" . WWH+WW . " ys+160 +Center +Number",0
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Half/10) . " h20 xs+" . WWH+WW . " ys+180",Save
+*/
+Gui,1: Add, Button,% "w" . "120" . " h" . "20" . " x" . AppResolution.Width-140 . " y" . AppResolution.Height-60 . " vButton_SaveDailyLog gDailyLog_Save",Save Log
 
 Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . AppResolution.x . " y" . AppResolution.y,Job Manager
 
-
-
+Disable_StartingEmulsion_Fields()
+Disable_EndingEmulsion_Fields()
 
 
 

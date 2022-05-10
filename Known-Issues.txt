@@ -1,0 +1,6 @@
+"Job Manager" - Surface Treatment
+
+-Current Tender export template only supports 10 road items. following https://www.autohotkey.com/board/topic/98067-ahk-and-excel-copy-a-sheet-delete-a-sheet/ i should be able to duplicate the sheet and create support for unlimited
+-Add Duplicate Contract work context menu (opens New Road menu with pre-filled info from selected road)
+-Add unsaved changes indicator after modifying a daily log. Currently if you change for example 'Sunny" to 'Cloudy' on 3/18/2022 and switch to 3/19/2022 without hitting save, it will discard all changes and load the new day.
+-Context menu from daily log carrys over to the contract details context menu.

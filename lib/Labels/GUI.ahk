@@ -1,19 +1,4 @@
-﻿GuiContextMenu:
-if(A_GuiControl="GroupBox_JobWorkLV"){
-    RowX:=LV_GetNext()
-    LV_GetText(RowXText, RowX, 1)
-if(RowX){
-    Menu, EditContractWorkMenu, Add, Edit, EditWork
-    Menu, EditContractWorkMenu, Add, Remove, Context_RemoveWork
-    Menu, EditContractWorkMenu, Add, New Contract Work, Context_NewWork
-    Menu, EditContractWorkMenu, Show
-}else{
-    Menu, WorkMenuContext, Add, New Contract Work, Context_NewWork
-    Menu, WorkMenuContext, Show
-}
-
-}
-return
+﻿
 GuiClose:
     if(UnsavedChanges){
         MsgBox, 4388, Unsaved Changes, There are unsaved changes to the current job file. would you like to discard them and close the active job?
@@ -107,17 +92,7 @@ if(ListManager.GetData("AutoloadDailyLogDropdown",false)){
     Goto,GuiDailyLoggingLoadDay
 }
 Return
-GuiDailyLoggingLoadDay:
-Gui,1:Submit,NoHide
- for index,DayX in ActiveJob.SerializableData.DailyLogs
-        {
-            if(DayX.Date = DailyLogging_Days){
-GuiControl,,DailyLog_Date,% DayX.Date
-GuiControl,,DailyLog_Title,% ActiveJob.SerializableData.JobNumber . " - " . ActiveJob.SerializableData.JobOwner
-            }
-        }
 
-Return
 
 GuiDailyLoggingNewDay:
 Gui,1:Submit,NoHide

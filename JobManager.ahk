@@ -16,6 +16,7 @@ ActiveJobFile:=0
 ActiveJob:=0
 UnsavedChanges:=False
 INTERNAL_LOADING:=true
+CONTEXTMENU_CREATED:=False
 ;This Include organizes the main GUI's menu creation
 #Include lib\JobManager\GUI\Gui_Menu.ahk 
 ;This Include organizes the main GUI's creation
@@ -34,12 +35,18 @@ return
 #Include lib\Labels\GUI_Menu.ahk
 #Include lib\Functionality\AddWork.ahk
 #Include lib\Functionality\RemoveWork.ahk
+#Include lib\Functionality\CopyWork.ahk
 #Include lib\Functionality\EditWork.ahk
 #Include lib\Functionality\NewBlankJob.ahk
 #Include lib\Functionality\SavingJob.ahk
 #Include lib\Functionality\LoadingJob.ahk
 #Include lib\Functionality\AddDailyLog.ahk
 #Include lib\Functionality\AddJobNumber.ahk
+#Include lib\Functionality\DailyLog_Save.ahk
+#Include lib\Functionality\DailyLog_Load.ahk
+#Include lib\Functionality\DailyLog_StartingEmulsion.ahk
+#Include lib\Functionality\DailyLog_EndingEmulsion.ahk
+#Include lib\JobManager\GUI\GUI_Context.ahk 
 ;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk
 ;This include adds debug functions

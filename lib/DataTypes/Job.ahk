@@ -80,7 +80,7 @@ class Job extends SerializableClass{
                 this.SerializableData.DailyLogs:=_DailyLogging
             }
 
-            if(!isObject(_Weather)){
+            if(!isObject(_Weather)){ ;Remove these, weather moved to Daily Logs
                 this.SerializableData.Weather:={}
                 this.SerializableData.Weather.Morning:=new WeatherState(0,1,"SUNNY")
                 this.SerializableData.Weather.Lunch:=new WeatherState(0,1,"SUNNY")

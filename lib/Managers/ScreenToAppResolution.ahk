@@ -11,6 +11,8 @@
         this.Widths:={}
         this.Widths.Full:=Floor((this.Width) - (this.Padding * 2))
         this.Widths.FullMinusPadding:=Floor((this.Width) - (this.Padding * 4))
+        this.Widths.Sixtenth := Floor((this.Width / 16))
+        this.Widths.SixtenthMinusPadding := Floor((this.Width / 16)) - this.Padding
         this.Widths.Tenth := Floor((this.Width / 10))
         this.Widths.TenthMinusPadding := Floor((this.Width / 10)) - this.Padding
         this.Widths.Eigth := Floor((this.Width / 8))

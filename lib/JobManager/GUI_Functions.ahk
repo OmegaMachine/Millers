@@ -83,6 +83,9 @@ Push_GUI(){
     ActiveJob.SerializableData.GeneralContractor:=JobDetails_JobContractor
     ActiveJob.SerializableData.SubContractor:=JobDetails_JobSubcontractor
 
+/*
+
+
     ActiveJob.SerializableData.Weather.Morning.SerializableData.Status:=JobWeather_MorningDDL
     ActiveJob.SerializableData.Weather.Morning.SerializableData.Temperature:=JobWeather_MorningTempDDL
 
@@ -93,6 +96,7 @@ Push_GUI(){
     ActiveJob.SerializableData.Weather.Evening.SerializableData.Temperature:=JobWeather_EveningTempDDL
 
     ActiveJob.SerializableData.Weather.Humidity:=JobWeather_HumidityDDL
+    */
     ActiveJob.SerializableData.Contract_WorkNotes:=Contract_JobWorkNotes
 
 
@@ -109,6 +113,8 @@ Push_ActiveJob(_Job){
     GuiControl,,JobDetails_JobContactPhone,% ActiveJob.SerializableData.OwnerPhone
     GuiControl,ChooseString,JobDetails_JobContractor,% ActiveJob.SerializableData.GeneralContractor
     GuiControl,ChooseString,JobDetails_JobSubContractor,% ActiveJob.SerializableData.Subcontractor
+/*
+
 
     GuiControl,ChooseString,JobWeather_MorningDDL,% ActiveJob.SerializableData.Weather.Morning.SerializableData.Status
     GuiControl,ChooseString,JobWeather_MorningTempDDL,% ActiveJob.SerializableData.Weather.Morning.SerializableData.Temperature
@@ -120,6 +126,8 @@ Push_ActiveJob(_Job){
     GuiControl,ChooseString,JobWeather_EveningTempDDL,% ActiveJob.SerializableData.Weather.Evening.SerializableData.Temperature
 
     GuiControl,,JobWeather_HumidityDDL,% ActiveJob.SerializableData.Weather.Humidity
+*/
+
     GuiControl,,Contract_JobWorkNotes,% ActiveJob.SerializableData.Contract_WorkNotes
 
 GuiControl,,DailyLogging_Days,% "|" . ActiveJob.DailyLogsList()

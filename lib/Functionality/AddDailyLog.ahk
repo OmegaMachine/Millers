@@ -16,16 +16,19 @@
         NewDailyLog:={}
         NewDailyLog.Date:=__Day
 
-        NewDailyLog.Vessals:=[]
+        NewDailyLog.Vessals:=[] ;obsolete
+        NewDailyLog.StartingEmulsion:=[]
+        NewDailyLog.EndingEmulsion:=[]
+        
         NewDailyLog.WorkCompleted:=[]
         NewDailyLog.MasterAggregates:=[]
         NewDailyLog.MasterBOL:=[]
         NewDailyLog.Weather:={}
-        NewDailyLog.Weather.Morning_Status:=Sunny
+        NewDailyLog.Weather.Morning_Status:="Sunny"
         NewDailyLog.Weather.Morning_Temp:=1
-        NewDailyLog.Weather.Lunch_Status:=Sunny
+        NewDailyLog.Weather.Lunch_Status:="Sunny"
         NewDailyLog.Weather.Lunch_Temp:=1
-        NewDailyLog.Weather.Evening_Status:=Sunny
+        NewDailyLog.Weather.Evening_Status:="Sunny"
         NewDailyLog.Weather.Evening_Temp:=1
         NewDailyLog.Weather.Humidity:=50
         
