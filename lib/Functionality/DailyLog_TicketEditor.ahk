@@ -22,6 +22,12 @@ GuiControl,ChooseString,TicketEditor_EmulsionPODDL,% TicketContext.EmulsionPO
 GuiControl,ChooseString,TicketEditor_JobPODDL,% TicketContext.JobPO
 GuiControl,,TicketEditor_Date,% TicketContext.Date
 Disable_TicketEditor_ProductEditor()
+Gui,22:Listview,TicketEditor_ProductLV
+LV_Delete()
+For index9, _Product in TicketContext.Products
+{
+    LV_Add("",_Product.Vessal,_Product.Product,_Product.Quantity,_Product.Gross,_Product.Tare,_Product.Net,_Product.Temp)
+}
  Gui,22: Show, w581 h427, Ticket Editor
  Gui,1:Default
  return 1
@@ -168,3 +174,66 @@ GuiControl,Enable,TicketEditor_ProductSave
 GuiControl,Enable,TicketEditor_ProductDelete
 return 1
 }
+
+
+TicketEditor_AddProduct:
+NewProduct:={}
+NewProduct.Vessal:="None Set"
+NewProduct.Product:="None Set"
+NewProduct.Quantity:=0
+NewProduct.Gross:=0
+NewProduct.Tare:=0
+NewProduct.Net:=0
+NewProduct.Temp:=0
+for index,DayX in ActiveJob.SerializableData.DailyLogs
+        {
+            if(DayX.Date = DailyLogging_Days){ ;Get the active Day
+             if(TicketContext.ID){ ;If theres an ticket in context
+             for index7,TickX in DayX.RecievedEmulsions
+                         {
+                             if(TickX.ID=TicketContext.ID){
+                                 ActiveJob.SerializableData.DailyLogs[index].RecievedEmulsions[index7].Products.push(NewProduct)
+                                 ;update LV
+                                 Gui,22:Listview,TicketEditor_ProductLV
+LV_Delete()
+For index9, _Product in TicketContext.Products
+{
+    LV_Add("",_Product.Vessal,_Product.Product,_Product.Quantity,_Product.Gross,_Product.Tare,_Product.Net,_Product.Temp)
+}
+;End update LV
+                        ;reload emulsion tickets in daily log
+                        Gui,1:Listview,DailyLog_RecievedEmulsionsLV
+                        Gui,1:Default
+Disable_RecievedEmulsion_Fields()
+GuiControl,,DailyLog_RecievedEmulsion_SelectedTicket,<Select a Ticket>
+
+LV_Delete()
+for index2,TicketX in DayX.RecievedEmulsions
+        {
+            LV_Add("",TicketX.ID,TicketX.Driver,TicketX.TimeOut,TicketX.Products.length())
+        }
+        ;end reload emulsion tickets in daily log
+
+                             }
+                         }
+             }
+
+            }
+        }
+return
+
+
+
+TicketEditor_SelectProduct:
+;gui,22:Submit,NoHide
+Gui,22:Listview,TicketEditor_ProductLV
+LV_GetText(_SelVessal, LV_GetNext(0, "F"), 1)
+LV_GetText(_SelProduct, LV_GetNext(0, "F"), 2)
+if(_SelVessal){
+GuiControl,ChooseString,TicketEditor_ProductVessal,% _SelVessal
+GuiControl,ChooseString,TicketEditor_ProductProduct,% _SelProduct
+GuiControl,,TicketEditor_ProductQuantity,0
+Enable_TicketEditor_ProductEditor()
+}
+Return
+

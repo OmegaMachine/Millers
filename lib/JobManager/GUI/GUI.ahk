@@ -384,13 +384,13 @@ Gui,22:  Add, Button, x472 y59 w90 h20 gTicketEditor_SaveDetails, Save Details
 Gui,22:  Add, GroupBox, x2 y99 w570 h320 , Products
 
 Gui,22:  Add, GroupBox, x12 y119 w550 h170 , Viewer
-Gui,22:  Add, ListView, x22 y139 w530 h140 , Vessal|Product|Quantity (L)|Gross (KG)|Tare (KG)|Net (KG)
+Gui,22:  Add, ListView, x22 y139 w530 h140 vTicketEditor_ProductLV gTicketEditor_SelectProduct, Vessal|Product|Quantity (L)|Gross (KG)|Tare (KG)|Net (KG)|Temp (C)
 
-Gui,22:  Add, GroupBox, x12 y289 w550 h100 , Edit Product (<Select a Product>)
+Gui,22:  Add, GroupBox, x12 y289 w550 h100 , Edit Product (<Select a Vessal/Product>)
 Gui,22:  Add, Text, x22 y309 w60 h20 , Vessal
-Gui,22:  Add, Edit, x82 y309 w100 h20 vTicketEditor_ProductVessal,
+Gui,22:  Add, DropDownList, x82 y309 w100 h200 vTicketEditor_ProductVessal,% ListManager.ListToDelimited(ListManager.ListByName("Vessals"),1)
 Gui,22:  Add, Text, x202 y309 w60 h20 , Product
-Gui,22:  Add, Edit, x262 y309 w100 h20 vTicketEditor_ProductProduct,
+Gui,22:  Add, DropDownList, x262 y309 w100 h200 vTicketEditor_ProductProduct,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
 Gui,22:  Add, Text, x382 y309 w60 h20 , Quantity (L)
 Gui,22:  Add, Edit, x442 y309 w100 h20 vTicketEditor_ProductQuantity,
 Gui,22:  Add, Text, x22 y329 w60 h20 , Gross (KG)
@@ -403,7 +403,7 @@ Gui,22:  Add, Text, x22 y349 w60 h20 , Temp (C)
 Gui,22:  Add, Edit, x82 y349 w100 h20 vTicketEditor_ProductTemp,
 Gui,22:  Add, Button, x462 y359 w80 h20 vTicketEditor_ProductSave, Save Product
 Gui,22:  Add, Button, x372 y359 w80 h20 vTicketEditor_ProductDelete, Delete Product
-Gui,22:  Add, Button, x12 y389 w100 h20 , Add New Product
+Gui,22:  Add, Button, x12 y389 w100 h20 gTicketEditor_AddProduct, Add New Product
 Gui,22:  Add, Button, x372 y59 w100 h20 gTicketEditor_Delete, Delete Ticket
 
 /*

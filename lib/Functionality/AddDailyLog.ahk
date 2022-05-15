@@ -22,8 +22,10 @@
         NewDailyLog.RecievedEmulsions:=[]
 
         NewDailyLog.WorkCompleted:=[]
-        NewDailyLog.MasterAggregates:=[]
-        NewDailyLog.MasterBOL:=[]
+        ;NewDailyLog.MasterAggregates:=[]
+        NewDailyLog.RecievedAggregates:=[]
+        ;NewDailyLog.MasterBOL:=[]
+        NewDailyLog.Notes:=""
         NewDailyLog.Weather:={}
         NewDailyLog.Weather.Morning_Status:="Sunny"
         NewDailyLog.Weather.Morning_Temp:=1
