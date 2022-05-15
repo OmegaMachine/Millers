@@ -31,6 +31,18 @@ for index2,VessalX in DayX.StartingEmulsion
             LV_Add("",VessalX.Name,VessalX.Product,VessalX.Quantity)
         }
 
+
+        ;Recieved Emulsions
+Gui,1:Listview,DailyLog_RecievedEmulsionsLV
+Disable_RecievedEmulsion_Fields()
+GuiControl,,DailyLog_RecievedEmulsion_SelectedTicket,<Select a Ticket>
+
+LV_Delete()
+for index2,TicketX in DayX.RecievedEmulsions
+        {
+            LV_Add("",TicketX.ID,TicketX.Driver,TicketX.TimeOut,TicketX.Products.length())
+        }
+
         ;Ending Emulsions
 Gui,1:Listview,DailyLog_EndingEmulsionsLV
 Disable_EndingEmulsion_Fields()
@@ -44,6 +56,143 @@ for index2,VessalX in DayX.EndingEmulsion
             LV_Add("",VessalX.Name,VessalX.Product,VessalX.Quantity)
         }
 
+
+        ;Calculated Emulsions
+            ;By Start/End
+            Gui,1:Listview,DailyLog_CalculatedEmulsionsLVEnd
+            LV_Delete()
+            _ProList:=DailyLog_UsedEmulsions_Products(DayX)
+            For Index5,_Pro in _ProList
+            {
+                LV_Add("",_Pro.Product)
+            }
+            ;By Work
+            Gui,1:Listview,DailyLog_CalculatedEmulsionsLVWork
+            LV_Delete()
+
+         ;End Calculated Emulsions   
             }
         }
+        Enable_VessalsAndEmulsions()
 Return
+
+
+
+Enable_VessalsAndEmulsions(){
+    global
+GuiControl,Enable,DailyLog_EndingEmulsion_AddVessalButton
+GuiControl,Enable,DailyLog_RecievedEmulsion_AddTicketButton
+GuiControl,Enable,DailyLog_StartingEmulsion_AddVessalButton
+GuiControl,Enable,DailyLog_EndingEmulsion_ImportButton
+GuiControl,Enable,DailyLog_StartingEmulsion_ImportButton
+GuiControl,Enable,DailyLog_StartingEmulsionsLV
+GuiControl,Enable,DailyLog_EndingEmulsionsLV
+GuiControl,Enable,DailyLog_RecievedEmulsionsLV
+
+GuiControl,Enable,DailyLog_StartingEmulsion_Vessal
+GuiControl,Enable,DailyLog_StartingEmulsion_Product
+GuiControl,Enable,DailyLog_EndingEmulsion_Vessal
+GuiControl,Enable,DailyLog_EndingEmulsion_Product
+GuiControl,Enable,DailyLog_RecievedEmulsion_ID
+GuiControl,Enable,DailyLog_StartingEmulsion_SelectedVessal
+GuiControl,Enable,DailyLog_RecievedEmulsion_SelectedTicket
+GuiControl,Enable,DailyLog_EndingEmulsion_SelectedVessal
+return
+}
+Disable_VessalsAndEmulsions(){
+    global
+GuiControl,Disable,DailyLog_EndingEmulsion_AddVessalButton
+GuiControl,Disable,DailyLog_RecievedEmulsion_AddTicketButton
+GuiControl,Disable,DailyLog_StartingEmulsion_AddVessalButton
+GuiControl,Disable,DailyLog_EndingEmulsion_ImportButton
+GuiControl,Disable,DailyLog_StartingEmulsion_ImportButton
+GuiControl,Disable,DailyLog_StartingEmulsionsLV
+GuiControl,Disable,DailyLog_EndingEmulsionsLV
+GuiControl,Disable,DailyLog_RecievedEmulsionsLV
+
+GuiControl,Disable,DailyLog_StartingEmulsion_Vessal
+GuiControl,Disable,DailyLog_StartingEmulsion_Product
+GuiControl,Disable,DailyLog_EndingEmulsion_Vessal
+GuiControl,Disable,DailyLog_EndingEmulsion_Product
+GuiControl,Disable,DailyLog_RecievedEmulsion_ID
+GuiControl,Disable,DailyLog_StartingEmulsion_SelectedVessal
+GuiControl,Disable,DailyLog_RecievedEmulsion_SelectedTicket
+GuiControl,Disable,DailyLog_EndingEmulsion_SelectedVessal
+
+
+return
+}
+
+
+DailyLog_UsedEmulsions_Products(_Day){
+    _ProductList:=[]
+    ;Starting Emulsion
+for index2,VessalX in _Day.StartingEmulsion
+        {
+            ProductExists:=0
+            For Index3,Item in _ProductList
+            {
+                    if(Item.Product=VessalX.Product){
+                        ProductExists:=1
+                        break
+                    }
+            }
+            if(ProductExists){
+continue
+            }else{
+                _NewP:={}
+                _NewP.Product:=VessalX.Product
+                _ProductList.Push(_NewP)
+            }
+        }
+        ;Ending Emulsion
+        for index2,VessalX in _Day.EndingEmulsion
+        {
+            ProductExists:=0
+            For Index3,Item in _ProductList
+            {
+                    if(Item.Product=VessalX.Product){
+                        ProductExists:=1
+                        break
+                    }
+            }
+            if(ProductExists){
+continue
+            }else{
+                _NewP:={}
+                _NewP.Product:=VessalX.Product
+                _ProductList.Push(_NewP)
+            }
+        }
+                ;Recieved Emulsion
+                
+        for index2,TicketX in _Day.RecievedEmulsions
+        {
+
+
+ For Index4,_Product in TicketX.Products
+            {
+ProductExists:=0
+                            For Index3,ItemX in _ProductList
+            {
+                             
+                    if(_Product.Product=ItemX.Product){
+                        ProductExists:=1
+                        break
+                    }
+
+            }
+
+ if(ProductExists){
+continue
+            }else{
+                _NewP:={}
+                _NewP.Product:=VessalX.Product
+                _ProductList.Push(_NewP)
+            }
+
+            }
+            
+        }
+        return _ProductList
+}

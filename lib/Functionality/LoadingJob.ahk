@@ -36,9 +36,13 @@
     Out("Load Job Success. <" . ActiveJobFile.FileNameNoExt . ">")
 return
 
-LoadJob(_JobFile){
+LoadJob(_JobFile,_Autoload:=0){
     global
+    if(_Autoload){
+    Out("Autoload Job Success. <" . _JobFile.FileNameNoExt . ">")
+    }else{
     Out("Load Job Success. <" . _JobFile.FileNameNoExt . ">")
+    }
     Remove_Welcome()
     SetTitle(APP_NAME . " - " . _JobFile.FileNameNoExt)
     Push_ActiveJob(ActiveJob)

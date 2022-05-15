@@ -160,3 +160,9 @@ return
 Create_WorkSummary:
 Out("Not Implemented")
 return
+
+
+22GuiClose:
+Gui,22:Hide
+
+return

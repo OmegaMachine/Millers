@@ -1,7 +1,7 @@
 ﻿Remove_Welcome(){
     global
     if(!Welcome_FLAG){
-        Out("Hiding Welcome Menu / Showing Job Menu")
+       ; Out("Hiding Welcome Menu / Showing Job Menu")
         Welcome_FLAG:=true
         GuiControl,Hide,Welcome_text
         GuiControl,Show,Main_TAB
@@ -12,7 +12,7 @@
 Show_Welcome(){
     global
     if(Welcome_FLAG){
-        Out("Showing Welcome Menu / Hiding Job Menu")
+       ; Out("Showing Welcome Menu / Hiding Job Menu")
         Welcome_FLAG:=false
         GuiControl,Show,Welcome_text
         GuiControl,Hide,Main_TAB
@@ -105,7 +105,7 @@ Push_GUI(){
 Push_ActiveJob(_Job){
     global
     Gui,1:Default
-    Out("Pushing Job Details to GUI")
+    ;Out("Pushing Job Details to GUI")
     GuiControl,ChooseString,JobDetails_JobNumberDDL,% ActiveJob.SerializableData.JobNumber
     GuiControl,ChooseString,JobDetails_JobOwnerDDL,% ActiveJob.SerializableData.JobOwner
     GuiControl,,JobDetails_JobDateTime,% ActiveJob.SerializableData.Date.SerializableData.TimeString

@@ -46,6 +46,8 @@ return
 #Include lib\Functionality\DailyLog_Load.ahk
 #Include lib\Functionality\DailyLog_StartingEmulsion.ahk
 #Include lib\Functionality\DailyLog_EndingEmulsion.ahk
+#Include lib\Functionality\DailyLog_RecievedEmulsions.ahk
+#Include lib\Functionality\DailyLog_TicketEditor.ahk
 #Include lib\JobManager\GUI\GUI_Context.ahk 
 ;This Include organizes functions related to the main gui (Displaying data controls etc)
 #Include lib\JobManager\GUI_Functions.ahk

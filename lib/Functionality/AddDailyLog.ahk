@@ -19,7 +19,8 @@
         NewDailyLog.Vessals:=[] ;obsolete
         NewDailyLog.StartingEmulsion:=[]
         NewDailyLog.EndingEmulsion:=[]
-        
+        NewDailyLog.RecievedEmulsions:=[]
+
         NewDailyLog.WorkCompleted:=[]
         NewDailyLog.MasterAggregates:=[]
         NewDailyLog.MasterBOL:=[]

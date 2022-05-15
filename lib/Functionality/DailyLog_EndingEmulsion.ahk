@@ -144,14 +144,7 @@ for index2,VessalX in DayX.EndingEmulsion
             }
 
         }
-;End Update process
 
-                return 
-;}else{
-                ;Out("Update vessal operation aborted.")
-               ; InfoMessage("Operation Aborted. No vessal updated.")
-                ;return 
-;}
 Return
 
 

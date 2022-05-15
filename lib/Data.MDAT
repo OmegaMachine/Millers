@@ -2,7 +2,7 @@
 Signature=Robert MacMaster
 Autoload=1
 AutoloadDailyLogDropdown=1
-LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\aaa.JOB
+LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\bbb.JOB
 Job_Numbers=[99999,555555,301666,"<Add New>"]
 [Lists]
 YesNo=["Yes","No"]
@@ -19,7 +19,9 @@ Employees=[111111,123123]
 GeneralContractors=["N/A","Smith's - PPG","Cavanagh"]
 SubContractors=["N/A","Cavanagh","Smith's - PPG"]
 Vessals=["1701 - LJ","1702 - Steve","1703 - Gary","Tanker (Main) - Kirk","Tanker (Pup) - Kirk","Tanker (Main) - Donald","Tanker (Pup) - Donald"]
-
+Drivers_Emulsion=["None Set","LJ","Steve"]
+Emulsion_PO=["N/A",123456,654321]
+Job_PO=["N/A","123","345"]
 [111111]
 FirstName=Robert
 LastName=MacMaster

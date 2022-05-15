@@ -6,7 +6,9 @@ BackgroundColor:="0x6b3a23" ;Brown
 BackgroundColor:="0x623f2a" ;Brown2
 BackgroundColor:="0xa88464" ;Light Brown
 BackgroundColor:="0xac998c" ;Gray Brown
-
+BackgroundColor:="0x9999cc" ;light purple
+BackgroundColor:="0x89abe3" ;light blue
+BackgroundColor:="0xC0C0C0"
 Gui,1: Menu, MainMenu
 Gui,1: +Resize +MinSize +LastFound
 MAIN_WINDOW:=WinExist()
@@ -107,7 +109,7 @@ Gui,1: Add, GroupBox,% "w" . AppResolution.Widths.Full-25 . " h" . AppResolution
 ;Starting Emulsion
 Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/5)+5 . " h" . AppResolution.Heights.Quarter-18 . " xs+5 ys+15 +Center",Starting Emulsion
 
-Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+35",Import...
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+35 vDailyLog_StartingEmulsion_ImportButton",Import...
 
 Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3)+10 . " h200 x+1" . " yp +Center vDailyLog_StartingEmulsion_Vessal",% ListManager.ListToDelimited(ListManager.ListByName("Vessals"),1)
 Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/5)+10 . " h200 x+0" . " yp +Center vDailyLog_StartingEmulsion_Product",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
@@ -126,11 +128,22 @@ Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-35 . " h18 xp+25" . "
 Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 xp-25" . " ys+135 gDeleteVessal vDailyLog_StartingEmulsion_SelectedVessalDeleteButton",Delete Vessal
 
 ;Recieved Emulsion
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/5)+5 . " h" . AppResolution.Heights.Quarter-18 . " x+10 ys+15 +Center Section",Recieved Emulsion
+
+Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6)+10 . " h20 xs+1" . " ys+20 +Center ",ID
+Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Full/5/5)+10 . " h20 x+0" . " yp +Center vDailyLog_RecievedEmulsion_ID",00000
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-35 . " h18 x+5" . " yp gAddTicketRecieved vDailyLog_RecievedEmulsion_AddTicketButton",Add...
+Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Full/5)-3 . " h80 xs+10 ys+40 vDailyLog_RecievedEmulsionsLV GSelectTicketRecieved",ID|Driver|Time Out|Product Count
+
+Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Full/5)-((AppResolution.Widths.Full/5/3)) . " h18 xs+10 ys+120 +Center +ReadOnly vDailyLog_RecievedEmulsion_SelectedTicket",<Select a Ticket>
+
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 x+5" . " yp gEditTicketRecieved vDailyLog_RecievedEmulsion_SelectedTicketEditButton",Edit Ticket
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 xp" . " yp+40 gDeleteTicketRecieved vDailyLog_RecievedEmulsion_SelectedTicketDeleteButton",Delete Ticket
 
 ;Ending Emulsion
-Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/5)+5 . " h" . AppResolution.Heights.Quarter-18 . " x+5 ys+15 +Center Section",Ending Emulsion
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/5)+5 . " h" . AppResolution.Heights.Quarter-18 . " xs+" . (AppResolution.Widths.Full/5)+5+5 . " ys +Center Section",Ending Emulsion
 
-Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+20",Import...
+Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+20 vDailyLog_EndingEmulsion_ImportButton",Import...
 
 Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3)+10 . " h200 x+1" . " yp +Center vDailyLog_EndingEmulsion_Vessal",% ListManager.ListToDelimited(ListManager.ListByName("Vessals"),1)
 Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/5)+10 . " h200 x+0" . " yp +Center vDailyLog_EndingEmulsion_Product",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
@@ -147,6 +160,37 @@ Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3) . " h200 x+m" .
 Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 x+45" . " yp gSavevessalEnding vDailyLog_EndingEmulsion_SelectedVessalSaveButton",Save Vessal
 Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-35 . " h18 xp+25" . " ys+20 gAddVessalEnding vDailyLog_EndingEmulsion_AddVessalButton",Add...
 Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 xp-25" . " ys+120 gDeleteVessalEnding vDailyLog_EndingEmulsion_SelectedVessalDeleteButton",Delete Vessal
+
+;Calculcated Emulsions
+
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/3)+30 . " h" . AppResolution.Heights.Quarter-18 . " xs+" . (AppResolution.Widths.Full/5)+5+5 . " ys +Center Section",Calculated Emulsions Used
+
+
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/6)+10 . " h" . AppResolution.Heights.Quarter-37 . " xs+" . 5 . " ys+15 +Center ",Calculated by Start/End Emulsions
+Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Full/6) . " h" . 100 . " xs+" . 10 . " ys+40 vDailyLog_CalculatedEmulsionsLVEnd ",Product|Quantity
+Gui,1: Add, GroupBox,% "w" . (AppResolution.Widths.Full/6)+10 . " h" . AppResolution.Heights.Quarter-37 . " xs+" . (AppResolution.Widths.Full/6)+15 . " ys+15 +Center ",Calculated by Work Completed
+Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Full/6) . " h" . 100 . " xp+" . 5 . " ys+40 vDailyLog_CalculatedEmulsionsLVWork ",Product|Quantity
+
+;Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+20 vDailyLog_EndingEmulsion_ImportButton",Import...
+
+;Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3)+10 . " h200 x+1" . " yp +Center vDailyLog_EndingEmulsion_Vessal",% ListManager.ListToDelimited(ListManager.ListByName("Vessals"),1)
+;Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/5)+10 . " h200 x+0" . " yp +Center vDailyLog_EndingEmulsion_Product",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+;Gui,1: Add, Listview,% "w" . (AppResolution.Widths.Full/5)-3 . " h80 xs+10 ys+40 vDailyLog_EndingEmulsionsLV GSelectVessalEnding",Vessal|Product|Quantity
+
+;Gui,1: Add, Edit,% "w" . (AppResolution.Widths.Full/5)-((AppResolution.Widths.Full/5/3)) . " h18 xs+10 ys+120 +Center +ReadOnly vDailyLog_EndingEmulsion_SelectedVessal",<Select a Vessal>
+
+;Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6) . " h20 xs+10 ys+140 ",Quantity
+;Gui,1: Add, Edit,% "w" . ((AppResolution.Widths.Full/5)/3) . " h20 x+m" . " yp +Center +Number vDailyLog_EndingEmulsion_SelectedVessalProductQuantity",0
+
+;Gui,1: Add, Text,% "w" . (AppResolution.Widths.Full/5/6) . " h18 xs+10 y+1",Product
+;Gui,1: Add, DropDownList,% "w" . (AppResolution.Widths.Full/5/3) . " h200 x+m" . " yp +Center vDailyLog_EndingEmulsion_SelectedVessalProductDDL",% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Types"),1)
+
+;Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 x+45" . " yp gSavevessalEnding vDailyLog_EndingEmulsion_SelectedVessalSaveButton",Save Vessal
+;Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-35 . " h18 xp+25" . " ys+20 gAddVessalEnding vDailyLog_EndingEmulsion_AddVessalButton",Add...
+;Gui,1: Add, Button,% "w" . (AppResolution.Widths.Full/5/3)-10 . " h18 xp-25" . " ys+120 gDeleteVessalEnding vDailyLog_EndingEmulsion_SelectedVessalDeleteButton",Delete Vessal
+
+
+
 
 /*
 
@@ -167,9 +211,9 @@ Gui,1: Show,% "w" . AppResolution.Width . " h" . AppResolution.height . " x" . A
 
 Disable_StartingEmulsion_Fields()
 Disable_EndingEmulsion_Fields()
+Disable_RecievedEmulsion_Fields()
 
-
-
+Disable_VessalsAndEmulsions()
 
 
 
@@ -314,8 +358,55 @@ Gui,16: Add, Edit, x12 y149 w100 h20 v_NewJobNumber,
 Gui,16: Add, Button, x112 y149 w80 h20 gLB_AddJobNumber, Add New
 Gui,16: Add, Button, x202 y39 w80 h20 gLB_DeleteJobNumber, Delete
 Gui,16: Add, Text, x202 y9 w80 h20 +Center vJobNumber_SelectionText, <Select>
-/*
 
+
+;Ticket Editor
+Gui,22: +Owner1
+Gui,22:  Add, GroupBox, x2 y-1 w570 h90 vTicketEditor_Groupbox, Ticket Details
+Gui,22:  Add, Text, x22 y19 w60 h20 , Ticket ID
+Gui,22:  Add, Edit, x82 y19 w100 h20 vTicketEditor_ID,
+Gui,22:  Add, Text, x22 y39 w60 h20 , Driver
+Gui,22:  Add, DropDownList, x82 y39 w100 h200  vTicketEditor_DriverDDL,% ListManager.ListToDelimited(ListManager.ListByName("Drivers_Emulsion"),1)
+Gui,22:  Add, Text, x202 y19 w60 h20 , Time In
+Gui,22:  Add, Edit, x262 y19 w100 h20  vTicketEditor_TimeIn,
+Gui,22:  Add, Text, x202 y39 w60 h20 , Time Out
+Gui,22:  Add, Edit, x262 y39 w100 h20  vTicketEditor_TimeOut,
+Gui,22:  Add, Text, x382 y19 w60 h20 , Source
+Gui,22:  Add, DropDownList, x442 y19 w120 h200 vTicketEditor_SourceDDL,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_Sources"),1)
+Gui,22:  Add, Text, x22 y59 w60 h20 , Job PO
+Gui,22:  Add, DropDownList, x82 y59 w100 h200 vTicketEditor_JobPODDL,% ListManager.ListToDelimited(ListManager.ListByName("Job_PO"),1)
+Gui,22:  Add, Text, x202 y59 w60 h20 , Emulsion PO
+Gui,22:  Add, DropDownList, x262 y59 w100 h200 vTicketEditor_EmulsionPODDL,% ListManager.ListToDelimited(ListManager.ListByName("Emulsion_PO"),1)
+Gui,22:  Add, Text, x382 y39 w60 h20 , Date
+Gui,22:  Add, DateTime, x442 y39 w120 h20  vTicketEditor_Date, 
+Gui,22:  Add, Button, x472 y59 w90 h20 gTicketEditor_SaveDetails, Save Details
+
+Gui,22:  Add, GroupBox, x2 y99 w570 h320 , Products
+
+Gui,22:  Add, GroupBox, x12 y119 w550 h170 , Viewer
+Gui,22:  Add, ListView, x22 y139 w530 h140 , Vessal|Product|Quantity (L)|Gross (KG)|Tare (KG)|Net (KG)
+
+Gui,22:  Add, GroupBox, x12 y289 w550 h100 , Edit Product (<Select a Product>)
+Gui,22:  Add, Text, x22 y309 w60 h20 , Vessal
+Gui,22:  Add, Edit, x82 y309 w100 h20 vTicketEditor_ProductVessal,
+Gui,22:  Add, Text, x202 y309 w60 h20 , Product
+Gui,22:  Add, Edit, x262 y309 w100 h20 vTicketEditor_ProductProduct,
+Gui,22:  Add, Text, x382 y309 w60 h20 , Quantity (L)
+Gui,22:  Add, Edit, x442 y309 w100 h20 vTicketEditor_ProductQuantity,
+Gui,22:  Add, Text, x22 y329 w60 h20 , Gross (KG)
+Gui,22:  Add, Edit, x82 y329 w100 h20 vTicketEditor_ProductGross,
+Gui,22:  Add, Text, x202 y329 w60 h20 , Tare (KG)
+Gui,22:  Add, Edit, x262 y329 w100 h20 vTicketEditor_ProductTare,
+Gui,22:  Add, Text, x382 y329 w60 h20 , Net (KG)
+Gui,22:  Add, Edit, x442 y329 w100 h20 vTicketEditor_ProductNet,
+Gui,22:  Add, Text, x22 y349 w60 h20 , Temp (C)
+Gui,22:  Add, Edit, x82 y349 w100 h20 vTicketEditor_ProductTemp,
+Gui,22:  Add, Button, x462 y359 w80 h20 vTicketEditor_ProductSave, Save Product
+Gui,22:  Add, Button, x372 y359 w80 h20 vTicketEditor_ProductDelete, Delete Product
+Gui,22:  Add, Button, x12 y389 w100 h20 , Add New Product
+Gui,22:  Add, Button, x372 y59 w100 h20 gTicketEditor_Delete, Delete Ticket
+
+/*
 
 Gui,16: Add, Button, x280 y50 w100 h20 gSubmit_RemoveWork, Remove Work
 Gui,16: Add, Text, x22 y29 w90 h20 , Work Name
