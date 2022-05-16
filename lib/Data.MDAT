@@ -2,7 +2,7 @@
 Signature=Robert MacMaster
 Autoload=1
 AutoloadDailyLogDropdown=1
-LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\bbb.JOB
+LastFile=C:\Users\robbi\OneDrive\Desktop\AHK\Projects\Millers\Jobs\testc.JOB
 Job_Numbers=[99999,555555,301666,"<Add New>"]
 [Lists]
 YesNo=["Yes","No"]
